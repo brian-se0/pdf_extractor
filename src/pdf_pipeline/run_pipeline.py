@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 import argparse
+from collections import Counter, defaultdict
 import os
 import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any
 
+from .audit import build_extraction_audit, format_audit_log_line
 from .discover import build_jobs, discover_pdfs
 from .extract import run_extraction_pass
 from .fallback import fallback_log_line, decide_fallback
@@ -113,6 +115,7 @@ def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult
     )
 
     if fallback.use_camelot:
+        table_count_before_camelot = len(tables)
         pages = _select_camelot_pages(
             page_count=page_count,
             marker_pages=primary.table_marker_pages,
@@ -129,6 +132,16 @@ def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult
         warnings.extend(camelot_warnings)
         if camelot_tables:
             tables = _merge_tables(tables, camelot_tables)
+        table_count_after_camelot = len(tables)
+        if table_count_after_camelot <= table_count_before_camelot:
+            message = (
+                f"[FALLBACK] {job.source_path.name} | "
+                "fallback attempted but no additional tables recovered "
+                f"| primary_tables={table_count_before_camelot} "
+                f"| final_tables={table_count_after_camelot}"
+            )
+            print(message, flush=True)
+            warnings.append(message)
 
     ocr_pdf_path = output_dir / "_ocr.pdf"
     if fallback.use_ocr:
@@ -214,6 +227,22 @@ def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult
         "tool_versions": tool_versions(),
     }
 
+    extraction_audit = build_extraction_audit(
+        text=text_result,
+        tables=tables,
+        figures=figures,
+    )
+    manifest["extraction_audit"] = extraction_audit
+
+    audit_line = format_audit_log_line(job.source_path.name, extraction_audit)
+    if audit_line:
+        print(audit_line, flush=True)
+        warnings.append(audit_line)
+        manifest["warnings"] = warnings
+
+    # Persist once before quality checks so manifest existence checks are meaningful.
+    write_json(manifest_path, manifest)
+
     quality_checks = run_quality_checks(
         output_dir=output_dir,
         markdown_path=markdown_path,
@@ -258,6 +287,8 @@ def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult
         manifest_path=str(manifest_path),
         markdown_path=str(markdown_path),
         quality_checks=quality_checks,
+        extraction_audit=extraction_audit,
+        extraction_issues=list(extraction_audit.get("issues", [])),
     )
 
 
@@ -348,6 +379,12 @@ def main(argv: list[str] | None = None) -> int:
     results.sort(key=lambda item: item.source_file.lower())
 
     fallback_results = [item for item in results if item.fallback.used]
+    issue_to_files: dict[str, list[str]] = defaultdict(list)
+    issue_counter: Counter[str] = Counter()
+    for item in results:
+        for issue in item.extraction_issues:
+            issue_counter[issue] += 1
+            issue_to_files[issue].append(item.source_file)
     print(f"Fallback used for {len(fallback_results)} PDF(s):", flush=True)
     for item in fallback_results:
         reason = ",".join(item.fallback.reasons) if item.fallback.reasons else "unspecified"
@@ -355,6 +392,11 @@ def main(argv: list[str] | None = None) -> int:
             f"- {item.source_file} -> {item.fallback.fallback_used_label} ({reason})",
             flush=True,
         )
+
+    papers_with_issues = sum(1 for item in results if item.extraction_issues)
+    print(f"Extraction audit flagged {papers_with_issues} PDF(s) with potential gaps.", flush=True)
+    for issue, count in issue_counter.most_common():
+        print(f"- {issue}: {count}", flush=True)
 
     batch_report = {
         "input": str(config.input_dir),
@@ -366,6 +408,11 @@ def main(argv: list[str] | None = None) -> int:
         "partial": sum(1 for item in results if item.status == "partial"),
         "failed": sum(1 for item in results if item.status == "failed"),
         "fallback_used": len(fallback_results),
+        "extraction_audit": {
+            "papers_with_issues": papers_with_issues,
+            "issue_counts": dict(issue_counter),
+            "issue_files": {issue: sorted(files) for issue, files in issue_to_files.items()},
+        },
         "results": [
             {
                 "paper_id": item.paper_id,
@@ -387,6 +434,8 @@ def main(argv: list[str] | None = None) -> int:
                 "errors": item.errors,
                 "warnings": item.warnings,
                 "quality_checks": item.quality_checks,
+                "extraction_audit": item.extraction_audit,
+                "extraction_issues": item.extraction_issues,
             }
             for item in results
         ],

@@ -113,6 +113,8 @@ class PaperProcessingResult:
     manifest_path: str = ""
     markdown_path: str = ""
     quality_checks: list[dict[str, str]] = field(default_factory=list)
+    extraction_audit: dict[str, Any] = field(default_factory=dict)
+    extraction_issues: list[str] = field(default_factory=list)
 
     @property
     def ok(self) -> bool:

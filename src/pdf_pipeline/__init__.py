@@ -1,6 +1,7 @@
 """PDF extraction pipeline package."""
 
 __all__ = [
+    "audit",
     "discover",
     "metadata",
     "text",
