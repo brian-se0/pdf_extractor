@@ -1,0 +1,28 @@
+Figure 9. Butterﬂy penalty matrices (P3) arising from noise and parallel shifts. (a) Mean eﬀect of adding
+noise (b) Sample parallel shift eﬀect.
+"displayed in Figure 9. We note that violations occur only for far from the money, long-dated"
+options.
+Parallel shifts Rogers and Tehranchi (2010) showed that moving implied volatility sur-
+faces by parallel shifts will eventually result in configurations with static arbitrage. We
+explore this phenomenon quantitatively by adding a parallel shift to an initial arbitrage-
+free implied volatility surface (SPX implied volatility surface on 31/12/2021) and testing
+for static arbitrage. The absolute value of the largest negative shift is taken to be smaller
+"than the smallest implied volatility value, guaranteeing non-negativity. The effect of par-"
+allel shifts on the arbitrage penalty are displayed in Figure 10: arbitrage constraints are
+"violated for large enough positive shifts, and the arbitrage penalty grows linearly there-"
+"after. For such large shifts, the constraint which is violated is convexity. A sample butterfly"
+arbitrage penalty matrix P3 is displayed in Figure 9(b). These results give a quantitative
+perspective on the results of Rogers and Tehranchi (2010).
+3.3. Arbitrage Penalty in SPX Implied Volatility Data
+"Data sources on implied volatility, such as OptionMetrics, are often interpolated from"
+"actual market quotes, a procedure which may itself introduce static arbitrage. This has"
+"been previously noted by several studies, see e.g. Cohen, Reisinger, and Wang (2023). We"
+study this phenomenon using daily SPX implied volatility surfaces from 2000 to end 2021.
+"We observe non-zero arbitrage penalties, with a decomposition displayed in Figure 11 and"
+"Table 3. 90.5% of dates display no calendar arbitrage, 97.3% display no call spread arbi-"
+trage and 84.9% no butterfly arbitrage. Overall 80.2% of the observations correspond to
+abitrage-free surfaces.
+We observe a number of spikes in arbitrage penalties. The two largest spikes happen on
+29/09/2008 (during the 2008 financial crisis) and on 13/03/2020 (the start of the Covid-19
+pandemic). Figure 11 shows that the majority of arbitrage violations happen during the
+"2008 financial crisis and during the start of the Covid-19 pandemic. For comparisons, the"

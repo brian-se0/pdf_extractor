@@ -1,0 +1,23 @@
+substantially smaller than the sample size with the volatility skew measure avail-
+"able. Due to the signiﬁcant smaller sample size, results in this section should be"
+interpreted with caution.
+We ﬁrst investigate the correlations between different skewness measures. As
+"expected, the cross-sectional correlation between volatility skew and RNSKEW"
+is –29%. HSKEW has close to 0 correlations with the other 2 skewness measures:
+"Its correlation with volatility skew is 1.79%, and its correlation with RNSKEW"
+is –0.43%.
+"To separate the explanatory power of volatility skew, RNSKEW, and"
+"HSKEW, we apply an FM regression, rather than double sorting, due to the lim-"
+"ited number of ﬁrms with available RNSKEW data. In the FM regression, we"
+use all 3 skewness measures to predict the weekly return in the 1st and 4th–24th
+"weeks after the skewness measures are observed. Using the regression, we test"
+"2 hypotheses: ﬁrst, whether volatility skew can still predict future stock returns"
+"in the presence of other skewness measures; second, whether the RNSKEW and"
+"HSKEW can predict future stock returns, and whether they carry a negative sign"
+as expected from a risk explanation.
+Table 6 reports the regression results. In the left-hand panel we do not in-
+"clude characteristics variables as controls, and in the right-hand panel we include"
+the 10 control variables as in equation (2). For the sample of ﬁrms with RNSKEW
+"available, the volatility skew is negative and statistically signiﬁcant in predicting"
+"the next week’s returns when there are no control variables. However, the pre-"
+dictability weakens substantially when we extend the weekly returns further into

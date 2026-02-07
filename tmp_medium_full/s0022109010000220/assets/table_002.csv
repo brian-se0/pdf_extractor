@@ -1,0 +1,23 @@
+,"In Table 4, data are obtained from CRSP, Compustat (for stocks), and OptionMetrics (for options). Our sample period is 1996–2005. Variable SKEW is the difference between the implied volatilities of out-of-the-",,,,,,,,,,,,,,
+,money (OTM) put options (strike-to-stock-price ratio closest to 0.95) and at-the-money (ATM) call options (strike-to-stock-price ratio closest to 1). Variable LOGSIZE is the logged ﬁrm market capitalization. Variable,,,,,,,,,,,,,,
+,BM is the book-to-market ratio. Variable LRET is the previous 6-month return. Variable VOLSTOCK is the underlying return volatility calculated using the previous month’s daily stock returns. Variable TURNOVER,,,,,,,,,,,,,,
+,is the stock trade volume over number of shares outstanding. Variable HSKEW is the underlying return skewness calculated using the previous month’s daily stock returns. Variable PCR is the option volume,,,,,,,,,,,,,,
+,"put-call ratio. Variable PVOL is the volatility premium, which is the difference between the implied volatility for at-the-money call options and VOL STOCK. Variable VOLUME is the total volume on all option contracts.",,,,,,,,,,,,,,
+,Variable OPEN is the total open interest on all option contracts.,,,,"In Panel A, we report Fama-MacBeth (FM) (1973) regression estimates for n-week-ahead weekly returns, with n = 1, 4, 8,",,,,,,,,,. . .,", 24. Panel B reports"
+,"cumulative holding period returns for quintile portfolios sorted on the previous week’s skew over the next n weeks, with n = 4, 8,",,,,,,,.,.,.,", 28. All returns are adjusted by the Fama-French (1996) 3-factor model, and",,,,
+,"the risk-adjusted returns are annualized. Panel C reports autocorrelation coefﬁcients of the SKEW. *, **, and *** indicate signiﬁcance at 10%, 5%, and 1% levels, respectively.",,,,,,,,,,,,,,
+Panel A. Predict Future nth Weekly Returns (FM Regression),,,,,,,,,,,,,,,
+nth,,,,,,,,,,,,,,,
+Week,,SKEW,LOGSIZE,BM,LRET,VOLSTOCK,TURNOVER,HSKEW,,,PCR,PVOL,VOLUME,OPEN,Adj. R2
+1,Coeff.,–0.0216,0.0003,0.0015,0.0032,–0.0038,0.0000,0.0008,,,0.0011,–0.0001,0.0000,0.0000,11.11%
+,t-stat.,–4.09***,0.89,1.79*,2.73***,–0.93,0.20,0.20,,,3.62***,–0.81,–0.12,–0.29,
+4,Coeff.,–0.0067,–0.0002,0.0008,0.0016,–0.0037,0.0001,–0.0004,,,0.0000,–0.0027,0.0000,0.0000,7.88%
+,t-stat.,–3.27***,–1.07,1.97**,1.67*,–1.08,0.81,–2.30**,,,–0.02,–0.88,–0.60,0.76,
+8,Coeff.,–0.0040,–0.0005,0.0002,0.0016,–0.0055,0.0001,–0.0003,,,0.0000,–0.0044,0.0000,0.0000,7.80%
+,t-stat.,–1.89,–2.04**,0.49,1.64,–1.58,1.21,–1.93*,,,1.81*,–1.42,0.60,0.74,
+12,Coeff.,–0.0026,–0.0003,0.0005,0.0015,–0.0038,0.0001,–0.0004,,,0.0000,–0.0050,0.0000,0.0000,7.44%
+,t-stat.,–1.30,–1.52,1.15,1.64,–1.09,0.60,–2.21**,,,0.13,–1.55,1.41,–0.33,
+16,Coeff.,–0.0052,–0.0003,0.0011,0.0021,–0.0011,0.0000,–0.0005,,,0.0000,–0.0002,0.0000,0.0000,7.30%
+,t-stat.,–2.47**,–1.25,2.43**,2.24**,–0.32,–0.14,–2.97***,,,–0.70,–0.07,1.37,0.03,
+20,Coeff.,–0.0043,–0.0003,0.0006,0.0020,–0.0033,0.0000,–0.0001,,,0.0000,–0.0049,0.0000,0.0000,"Xing, Zhang, and Zhao 7.14%"
+,t-stat.,–2.03**,–1.29,1.38,2.24**,–0.93,0.35,–0.43,,,1.37,–1.52,0.35,0.69,

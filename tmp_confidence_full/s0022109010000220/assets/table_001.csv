@@ -1,0 +1,10 @@
+648 Journal of Financial and Quantitative Analysis
+We report the results for the FM regression in Panel A of Table 2. In the
+"ﬁrst regression, we only include the volatility skew, and its coefﬁcient estimate"
+is –0.0061 with a statistically signiﬁcant t-statistic of –2.50. To better understand
+"the magnitude of the predictability, we compute the interquartile difference in the"
+"next week’s returns. From Table 1, the 25th percentile and the 75th percentile of"
+"SKEW are 2.40% and 8.43%, respectively. When SKEW increases from the 25th"
+"percentile to the 75th percentile, the implied decrease in the next week’s return"
+becomes (8.43% – 2.40%) × (–0.0061) = –5.52 basis points (bp) (or –2.90% per
+year).

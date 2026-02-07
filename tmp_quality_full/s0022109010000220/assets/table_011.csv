@@ -1,0 +1,20 @@
+Where Do Informed Traders Trade?
+"In Table 7, data are obtained from CRSP, Compustat (for stocks), and OptionMetrics (for options). Our sample period is"
+1996–2005. Variable SKEW is the difference between the implied volatilities of out-of-the-money (OTM) put options (strike-
+to-stock-price ratio closest to 0.95) and at-the-money (ATM) call options (strike-to-stock-price ratio closest to 1). Variable
+TURNOVER is the stock trade volume over the number of shares outstanding. Variable DELTA is the delta of the OTM
+"put option. Variable PIN is the PIN measure from Easley, O’Hara, and Hvidkjaer (2002). We report Fama-MacBeth (1973)"
+"regression results as speciﬁed in equation (3). *, **, and *** indicate signiﬁcance at 10%, 5%, and 1% levels, respectively."
+SKEW × SKEW × SKEW ×
+Regression SKEW TURNOVER DELTA PIN Adj. R2
+I Coeff. –0.0050 –0.0015 8.08%
+t-stat. –1.73* –1.38
+II Coeff. –0.0028 0.0407 7.82%
+t-stat. –0.67 1.49
+III Coeff. –0.0088 0.0385 7.46%
+t-stat. –1.07 0.65
+VI. Conclusion
+Informed traders might choose to trade in different markets to beneﬁt from
+"their informational advantage. Thus, one market could lead another market in the"
+"price discovery process. In this paper, we investigate whether the shape of the"
+volatility smirk contains relevant information for the underlying stock’s future

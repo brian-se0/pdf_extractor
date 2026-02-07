@@ -66,14 +66,17 @@ def run_quality_checks(
     )
 
     fallback_ok = (not fallback.used) or fallback.stdout_logged
+    if not fallback.used:
+        fallback_detail = "fallback not used"
+    elif fallback.stdout_logged:
+        fallback_detail = "fallback used and stdout logged"
+    else:
+        fallback_detail = "fallback used but stdout logging flag is false"
+
     add(
         "fallback_stdout_manifest_alignment",
         fallback_ok,
-        (
-            "fallback used and stdout logged"
-            if fallback_ok
-            else "fallback used but stdout logging flag is false"
-        ),
+        fallback_detail,
     )
 
     return checks

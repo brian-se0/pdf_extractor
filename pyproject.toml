@@ -21,10 +21,10 @@ ocr = [
 
 [project.scripts]
 pdf-extract = "pdf_pipeline.run_pipeline:main"
+pdf-quality-eval = "pdf_pipeline.quality_eval:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
-

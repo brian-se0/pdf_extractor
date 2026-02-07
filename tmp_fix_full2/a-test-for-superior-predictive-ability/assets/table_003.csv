@@ -1,0 +1,44 @@
+Hansen: A Test for Superior Predictive Ability,373
+given by,where
+,− 1 λ2 λ3 ω2 and (cid:17) 1 + 1 µk = λk√ λk + 1
+0 (cid:17) λ0,"k k k,"
+,2 4 12 n
+1 λ1,
+1,
+        m−1 (cid:17)0 λ2,"now follows where the expression for ω2 from var(dk,t) ="
+,k
+2,
+λ3 =,"var(L0,t − Lk,t) = 1 + var(Lk,t)"
+λ ≡ . m−1 (cid:17)0,and the Taylor expansion 2
+. .,
+. .,(about 0)
+. .,(cid:5) (cid:6)
+m−2,
+λm−1 m−1 (cid:17)0,1 2 . exp(arctan(x)) = 1 1 + x + 1 x2 − 1 x3 − 7 x4 + O(x5)
+λm,2 2 6 24
+(cid:17)0,
+"the In our experiments we use (cid:17)0 = 0, 1, 2, 5, 10 to control",
+,4.1 Simulation Results
+extent to which the inequalities are binding with ((cid:17)0 = 0 cor-,
+,"First, we consider the case with m = 100 and the two sam-"
+responding to the case where all inequalities are binding). The,
+,"ple sizes n = 200 and n = 1,000. Then we consider the case"
+"ﬁrst alternative model has (cid:17)1 = 0, −1, −2, −3, −4, −5. So",
+,"with m = 1,000 using the sample size n = 200. The rejection"
+the local alternative that is being analyzed λ1 = (cid:17)1 deﬁnes,
+,"frequencies that we report are based on 10,000 independent"
+"(unless (cid:17)1 = 0, which conforms with the null hypothesis). To",
+,"samples, where we used q = 1 in accordance with the lack of"
+"make the experiment more realistic, we tie the variance, σ 2",
+"k , to",
+,"time dependence in dt, t = 1, . . . , n. All of our simulations were"
+"the “quality” of the model. Speciﬁcally, we set",
+,made using Ox 3.30 (see Doornik 1999). The rejection frequen-
+= 1 σ 2,
+"k 2 exp(arctan(λk)),",cies of the tests at the 5% and 10% levels are reported in Ta-
+,bles 2–4. The numbers in italic type are used when the null
+such that a good model has a smaller variance than poor model.,
+,"hypothesis is true ((cid:17)1 = 0), so these frequencies correspond to"
+Note that this implies that,
+√,type I errors. The numbers in regular type represent powers for
+"n¯dk ∼ N(µk, ω2 k ),",the various local alternatives ((cid:17)1 < 0).

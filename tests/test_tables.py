@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import pdf_pipeline.tables as tables
+from pdf_pipeline.types import PageText, TableRecord
 
 
 class _FakeValues:
@@ -38,7 +39,10 @@ def test_extract_tables_camelot_prefers_usable_stream_when_lattice_unusable(monk
                 _FakeCamelotTable("1", [["single-col"], ["value"]]),
             ],
             "stream": [
-                _FakeCamelotTable("1", [["h1", "h2"], ["a", "b"]]),
+                _FakeCamelotTable(
+                    "1",
+                    [["Metric", "Value"], ["A", "10.2"], ["B", "11.4"]],
+                ),
             ],
         }
     )
@@ -98,3 +102,96 @@ def test_single_column_without_caption_is_not_usable() -> None:
         ["C 9.8 0.3"],
     ]
     assert tables._is_usable_table(rows, caption_confirmed=False) is False
+
+
+def test_postprocess_tables_drops_noise_and_duplicates() -> None:
+    good_rows = [
+        ["Metric", "Value"],
+        ["A", "10.1"],
+        ["B", "11.2"],
+    ]
+    noise_rows = [
+        ["Journal of Something 2026 Vol 1"],
+        ["Downloaded from provider"],
+        ["All use subject to terms"],
+    ]
+
+    records = [
+        TableRecord(table_id="", page_number=2, rows=good_rows, source="camelot:stream"),
+        TableRecord(table_id="", page_number=2, rows=good_rows, source="camelot:stream"),
+        TableRecord(table_id="", page_number=3, rows=noise_rows, source="camelot:stream"),
+    ]
+
+    filtered, warnings = tables._postprocess_tables(
+        records,
+        page_text_lookup={2: "Table 1. Results", 3: "Table 2. Notes"},
+        table_id_start=1,
+        source_name="camelot:stream",
+    )
+
+    assert len(filtered) == 1
+    assert filtered[0].table_id == "table_001"
+    assert filtered[0].quality_score >= 0.35
+    assert any("dedup removed" in warning for warning in warnings)
+    assert any("quality filter dropped" in warning for warning in warnings)
+
+
+def test_extract_tables_from_ocr_text_recovers_numeric_rows() -> None:
+    page = PageText(
+        page_number=3,
+        text=(
+            "Some context line\n"
+            "Table 1. Empirical Size\n"
+            "T p a b c\n"
+            "8 0 9.85 12.14 14.10\n"
+            "16 0 9.83 12.97 14.85\n"
+            "32 0 9.88 12.68 14.34\n"
+        ),
+        char_count=120,
+        image_area_ratio=1.0,
+        scan_like=False,
+    )
+
+    records, warnings = tables.extract_tables_from_ocr_text([page], start_index=1)
+
+    assert len(records) == 1
+    assert records[0].source == "ocr-text"
+    assert records[0].caption is not None
+    assert len(records[0].rows) >= 3
+    assert warnings == []
+
+
+def test_detect_table_marker_pages_ignores_inline_reference_only() -> None:
+    pages = [
+        PageText(
+            page_number=1,
+            text="As shown in Table 1, results improve for model B.",
+            char_count=52,
+            image_area_ratio=0.0,
+            scan_like=False,
+        )
+    ]
+
+    markers = tables.detect_table_marker_pages(pages)
+    assert markers == set()
+
+
+def test_detect_table_marker_pages_flags_caption_with_numeric_block() -> None:
+    pages = [
+        PageText(
+            page_number=2,
+            text=(
+                "Table 2. Simulation Results\n"
+                "T p alpha beta gamma\n"
+                "8 0 9.85 12.14 14.10\n"
+                "16 0 9.83 12.97 14.85\n"
+                "32 0 9.88 12.68 14.34\n"
+            ),
+            char_count=140,
+            image_area_ratio=0.0,
+            scan_like=False,
+        )
+    ]
+
+    markers = tables.detect_table_marker_pages(pages)
+    assert markers == {2}

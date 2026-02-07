@@ -1,0 +1,2 @@
+[console_scripts]
+pdf-extract = pdf_pipeline.run_pipeline:main

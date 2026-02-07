@@ -15,13 +15,13 @@ def _yaml_str(value: Any) -> str:
         return "true" if value else "false"
     if isinstance(value, (int, float)):
         return str(value)
-    text = str(value).replace("\n", " ").strip()
+    text = str(value).replace("\x00", "").replace("\n", " ").strip()
     escaped = text.replace('"', '\\"')
     return f'"{escaped}"'
 
 
 def _escape_md_cell(value: str) -> str:
-    return value.replace("|", "\\|").replace("\n", " ").strip()
+    return value.replace("\x00", "").replace("|", "\\|").replace("\n", " ").strip()
 
 
 def _table_to_markdown(rows: list[list[str]]) -> str | None:
@@ -101,10 +101,10 @@ def render_markdown(
     warnings: list[str],
     status: str,
 ) -> str:
-    title = metadata.get("title") or source_file
-    authors = metadata.get("authors") or []
+    title = str(metadata.get("title") or source_file).replace("\x00", "")
+    authors = [str(author).replace("\x00", "") for author in (metadata.get("authors") or [])]
     year = metadata.get("year")
-    doi = metadata.get("doi")
+    doi = str(metadata.get("doi")).replace("\x00", "") if metadata.get("doi") else None
     extracted_at = datetime.now(timezone.utc).isoformat()
 
     frontmatter_lines = [
@@ -187,4 +187,4 @@ def render_markdown(
         lines.append("- No warnings.")
     lines.append("")
 
-    return "\n".join(lines)
+    return "\n".join(lines).replace("\x00", "")

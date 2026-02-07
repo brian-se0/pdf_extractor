@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter, defaultdict
+import hashlib
 import os
 import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
@@ -9,13 +10,14 @@ from pathlib import Path
 from typing import Any
 
 from .audit import build_extraction_audit, format_audit_log_line
+from .confidence import compute_confidence
 from .discover import build_jobs, discover_pdfs
 from .extract import run_extraction_pass
 from .fallback import fallback_log_line, decide_fallback
-from .ocr import run_ocrmypdf
+from .ocr import run_ocrmypdf, run_tesseract_page_ocr
 from .quality import run_quality_checks
 from .render_markdown import render_markdown
-from .tables import extract_tables_camelot
+from .tables import extract_tables_camelot, extract_tables_from_ocr_text
 from .types import (
     PaperJob,
     PaperProcessingResult,
@@ -38,20 +40,46 @@ def _merge_metadata(primary: dict[str, Any], fallback: dict[str, Any]) -> dict[s
     return merged
 
 
+def _cleanup_previous_assets(assets_dir: Path, warnings: list[str]) -> None:
+    patterns = (
+        "fig_*",
+        "table_*.csv",
+        "._fig_*",
+        "._table_*.csv",
+    )
+    for pattern in patterns:
+        for file_path in assets_dir.glob(pattern):
+            if not file_path.is_file():
+                continue
+            try:
+                file_path.unlink()
+            except OSError as exc:
+                warnings.append(f"could not remove stale asset {file_path.name}: {exc}")
+
+
 def _table_signature(table: TableRecord) -> tuple[int, tuple[str, ...]]:
-    head = tuple(table.rows[0]) if table.rows else tuple()
-    return table.page_number, head
+    normalized_rows: list[str] = []
+    for row in table.rows[:6]:
+        normalized_cells = [" ".join(cell.split()).strip().lower() for cell in row]
+        normalized_rows.append("|".join(normalized_cells))
+    digest = hashlib.sha1("\n".join(normalized_rows).encode("utf-8")).hexdigest()[:16]
+    col_count = max((len(row) for row in table.rows), default=0)
+    return table.page_number, (digest, str(len(table.rows)), str(col_count))
 
 
 def _merge_tables(primary_tables: list[TableRecord], fallback_tables: list[TableRecord]) -> list[TableRecord]:
     merged = list(primary_tables)
-    seen = {_table_signature(table) for table in merged}
+    signature_to_index = {_table_signature(table): idx for idx, table in enumerate(merged)}
 
     for table in fallback_tables:
         signature = _table_signature(table)
-        if signature in seen:
+        if signature in signature_to_index:
+            existing_idx = signature_to_index[signature]
+            existing = merged[existing_idx]
+            if table.quality_score > existing.quality_score + 0.05:
+                merged[existing_idx] = table
             continue
-        seen.add(signature)
+        signature_to_index[signature] = len(merged)
         merged.append(table)
 
     for idx, table in enumerate(merged, start=1):
@@ -77,6 +105,17 @@ def _should_replace_text(primary: TextExtraction, candidate: TextExtraction) -> 
     return candidate.total_chars > primary.total_chars
 
 
+def _should_attempt_direct_ocr_image_fallback(
+    text_result: TextExtraction,
+    config: PipelineConfig,
+) -> bool:
+    return (
+        text_result.total_chars < config.min_total_chars
+        or text_result.scan_like_page_ratio >= config.direct_ocr_scan_like_ratio_threshold
+        or text_result.low_text_page_ratio >= config.direct_ocr_low_text_ratio_threshold
+    )
+
+
 def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult:
     started = time.time()
     output_dir = config.output_dir / job.paper_id
@@ -88,6 +127,7 @@ def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult
 
     warnings: list[str] = []
     errors: list[str] = []
+    _cleanup_previous_assets(assets_dir, warnings)
 
     primary = run_extraction_pass(
         pdf_path=job.source_path,
@@ -111,6 +151,7 @@ def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult
         text_result=text_result,
         table_count=len(tables),
         table_marker_pages=primary.table_marker_pages,
+        table_reference_count=primary.table_reference_count,
         stage_errors=primary.stage_errors,
     )
 
@@ -168,6 +209,31 @@ def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult
             if _should_replace_text(text_result, ocr_pass.text):
                 text_result = ocr_pass.text
 
+            # Some scanned PDFs still yield sparse/garbled text after ocrmypdf text-layer
+            # extraction. In that case, OCR the rendered page images directly.
+            if _should_attempt_direct_ocr_image_fallback(text_result, config):
+                direct_ocr_text, direct_ocr_error = run_tesseract_page_ocr(
+                    input_pdf=job.source_path,
+                    config=config,
+                )
+                if direct_ocr_error:
+                    warnings.append(f"OCR image fallback failed: {direct_ocr_error}")
+                elif direct_ocr_text and _should_replace_text(text_result, direct_ocr_text):
+                    text_result = direct_ocr_text
+                    warnings.append("OCR image fallback replaced text extraction output")
+
+            if not tables:
+                ocr_table_records, ocr_table_warnings = extract_tables_from_ocr_text(
+                    pages=text_result.pages,
+                    start_index=1,
+                )
+                warnings.extend(ocr_table_warnings)
+                if ocr_table_records:
+                    tables = ocr_table_records
+                    warnings.append(
+                        f"OCR text table fallback recovered {len(ocr_table_records)} table(s)"
+                    )
+
             if ocr_pass.tables:
                 tables = _merge_tables(tables, ocr_pass.tables)
 
@@ -183,6 +249,23 @@ def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult
     if errors and text_result.total_chars == 0 and not tables and not figures:
         status = "failed"
     elif errors:
+        status = "partial"
+
+    extraction_audit = build_extraction_audit(
+        text=text_result,
+        tables=tables,
+        figures=figures,
+    )
+    critical_audit_issues = {
+        "missing_text",
+        "likely_missing_tables",
+        "likely_missing_figures",
+        "likely_missing_equations",
+        "unresolved_table_extraction",
+    }
+    if status == "success" and any(
+        issue in critical_audit_issues for issue in extraction_audit.get("issues", [])
+    ):
         status = "partial"
 
     markdown = render_markdown(
@@ -227,11 +310,6 @@ def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult
         "tool_versions": tool_versions(),
     }
 
-    extraction_audit = build_extraction_audit(
-        text=text_result,
-        tables=tables,
-        figures=figures,
-    )
     manifest["extraction_audit"] = extraction_audit
 
     audit_line = format_audit_log_line(job.source_path.name, extraction_audit)
@@ -261,6 +339,17 @@ def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult
         status = "partial"
         manifest["status"] = status
 
+    confidence = compute_confidence(
+        status=status,
+        fallback=fallback,
+        extraction_audit=extraction_audit,
+        quality_checks=quality_checks,
+        text=text_result,
+        table_count=len(tables),
+        figure_count=len(figures),
+    )
+    manifest["confidence"] = confidence
+
     write_json(manifest_path, manifest)
 
     if ocr_pdf_path.exists():
@@ -289,6 +378,9 @@ def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult
         quality_checks=quality_checks,
         extraction_audit=extraction_audit,
         extraction_issues=list(extraction_audit.get("issues", [])),
+        confidence=confidence,
+        confidence_score=float(confidence.get("score", 0.0)),
+        confidence_label=str(confidence.get("label", "low")),
     )
 
 
@@ -379,6 +471,11 @@ def main(argv: list[str] | None = None) -> int:
     results.sort(key=lambda item: item.source_file.lower())
 
     fallback_results = [item for item in results if item.fallback.used]
+    confidence_buckets: Counter[str] = Counter(item.confidence_label for item in results)
+    avg_confidence = round(
+        sum(item.confidence_score for item in results) / len(results),
+        4,
+    ) if results else 0.0
     issue_to_files: dict[str, list[str]] = defaultdict(list)
     issue_counter: Counter[str] = Counter()
     for item in results:
@@ -408,6 +505,10 @@ def main(argv: list[str] | None = None) -> int:
         "partial": sum(1 for item in results if item.status == "partial"),
         "failed": sum(1 for item in results if item.status == "failed"),
         "fallback_used": len(fallback_results),
+        "confidence_summary": {
+            "average_score": avg_confidence,
+            "counts": dict(confidence_buckets),
+        },
         "extraction_audit": {
             "papers_with_issues": papers_with_issues,
             "issue_counts": dict(issue_counter),
@@ -436,6 +537,9 @@ def main(argv: list[str] | None = None) -> int:
                 "quality_checks": item.quality_checks,
                 "extraction_audit": item.extraction_audit,
                 "extraction_issues": item.extraction_issues,
+                "confidence_score": item.confidence_score,
+                "confidence_label": item.confidence_label,
+                "confidence": item.confidence,
             }
             for item in results
         ],

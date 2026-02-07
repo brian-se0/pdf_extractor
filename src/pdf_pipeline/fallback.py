@@ -20,6 +20,7 @@ def decide_fallback(
     text_result: TextExtraction | None,
     table_count: int,
     table_marker_pages: set[int],
+    table_reference_count: int,
     stage_errors: dict[str, str],
 ) -> FallbackState:
     state = FallbackState()
@@ -50,6 +51,9 @@ def decide_fallback(
             state.use_ocr = config.ocr_mode != "never" or state.use_ocr
 
     if table_marker_pages and table_count == 0:
+        reasons.append(TABLE_MISMATCH)
+        state.use_camelot = True
+    elif table_count == 0 and table_reference_count >= 4:
         reasons.append(TABLE_MISMATCH)
         state.use_camelot = True
 

@@ -1,0 +1,458 @@
+{
+  "results": [
+    {
+      "paper": "07-aos516",
+      "source": "07-AOS516.pdf",
+      "status": "success",
+      "page_count": 34,
+      "manifest_words": 13970,
+      "manifest_tables": 4,
+      "manifest_figures": 2,
+      "md_tables": 4,
+      "md_figures": 2,
+      "issues": []
+    },
+    {
+      "paper": "1-s2-0-0022053179900437-main",
+      "source": "1-s2.0-0022053179900437-main.pdf",
+      "status": "success",
+      "page_count": 28,
+      "manifest_words": 13251,
+      "manifest_tables": 0,
+      "manifest_figures": 449,
+      "md_tables": 0,
+      "md_figures": 449,
+      "issues": [
+        "figure_density_high_449_over_28_pages"
+      ]
+    },
+    {
+      "paper": "1-s2-0-0304414981900260-main",
+      "source": "1-s2.0-0304414981900260-main.pdf",
+      "status": "success",
+      "page_count": 46,
+      "manifest_words": 20622,
+      "manifest_tables": 0,
+      "manifest_figures": 0,
+      "md_tables": 0,
+      "md_figures": 0,
+      "issues": []
+    },
+    {
+      "paper": "1-s2-0-s030440761000076x-main",
+      "source": "1-s2.0-S030440761000076X-main.pdf",
+      "status": "success",
+      "page_count": 11,
+      "manifest_words": 11380,
+      "manifest_tables": 3,
+      "manifest_figures": 2,
+      "md_tables": 3,
+      "md_figures": 2,
+      "issues": []
+    },
+    {
+      "paper": "1-s2-0-s0378426607001318-main",
+      "source": "1-s2.0-S0378426607001318-main.pdf",
+      "status": "success",
+      "page_count": 21,
+      "manifest_words": 9156,
+      "manifest_tables": 5,
+      "manifest_figures": 5,
+      "md_tables": 5,
+      "md_figures": 5,
+      "issues": []
+    },
+    {
+      "paper": "1210-7111v4",
+      "source": "1210.7111v4.pdf",
+      "status": "success",
+      "page_count": 20,
+      "manifest_words": 10511,
+      "manifest_tables": 0,
+      "manifest_figures": 2,
+      "md_tables": 0,
+      "md_figures": 2,
+      "issues": [
+        "markdown_contains_null_bytes"
+      ]
+    },
+    {
+      "paper": "160101",
+      "source": "160101.pdf",
+      "status": "success",
+      "page_count": 43,
+      "manifest_words": 21498,
+      "manifest_tables": 10,
+      "manifest_figures": 0,
+      "md_tables": 10,
+      "md_figures": 0,
+      "issues": []
+    },
+    {
+      "paper": "1906-05065v3",
+      "source": "1906.05065v3.pdf",
+      "status": "success",
+      "page_count": 30,
+      "manifest_words": 35685,
+      "manifest_tables": 51,
+      "manifest_figures": 17,
+      "md_tables": 51,
+      "md_figures": 17,
+      "issues": [
+        "markdown_contains_null_bytes"
+      ]
+    },
+    {
+      "paper": "2002-00085v1",
+      "source": "2002.00085v1.pdf",
+      "status": "success",
+      "page_count": 37,
+      "manifest_words": 13671,
+      "manifest_tables": 6,
+      "manifest_figures": 27,
+      "md_tables": 6,
+      "md_figures": 27,
+      "issues": []
+    },
+    {
+      "paper": "2102-03945v1",
+      "source": "2102.03945v1.pdf",
+      "status": "success",
+      "page_count": 17,
+      "manifest_words": 4955,
+      "manifest_tables": 3,
+      "manifest_figures": 2,
+      "md_tables": 3,
+      "md_figures": 2,
+      "issues": []
+    },
+    {
+      "paper": "2108-04941v3",
+      "source": "2108.04941v3.pdf",
+      "status": "success",
+      "page_count": 20,
+      "manifest_words": 9221,
+      "manifest_tables": 11,
+      "manifest_figures": 8,
+      "md_tables": 11,
+      "md_figures": 8,
+      "issues": [
+        "markdown_contains_null_bytes"
+      ]
+    },
+    {
+      "paper": "2108-08481v6",
+      "source": "2108.08481v6.pdf",
+      "status": "success",
+      "page_count": 97,
+      "manifest_words": 41199,
+      "manifest_tables": 2,
+      "manifest_figures": 25,
+      "md_tables": 2,
+      "md_figures": 25,
+      "issues": [
+        "markdown_contains_null_bytes"
+      ]
+    },
+    {
+      "paper": "a-reality-check-for-data-snooping",
+      "source": "A Reality Check for Data Snooping.pdf",
+      "status": "success",
+      "page_count": 30,
+      "manifest_words": 1102,
+      "manifest_tables": 0,
+      "manifest_figures": 30,
+      "md_tables": 0,
+      "md_figures": 30,
+      "issues": []
+    },
+    {
+      "paper": "a-test-for-superior-predictive-ability",
+      "source": "A Test for Superior Predictive Ability.pdf",
+      "status": "success",
+      "page_count": 17,
+      "manifest_words": 14525,
+      "manifest_tables": 12,
+      "manifest_figures": 20,
+      "md_tables": 12,
+      "md_figures": 20,
+      "issues": []
+    },
+    {
+      "paper": "arbitrage-free-neural-sde-market-models",
+      "source": "Arbitrage-Free Neural-SDE Market Models.pdf",
+      "status": "success",
+      "page_count": 47,
+      "manifest_words": 19058,
+      "manifest_tables": 3,
+      "manifest_figures": 51,
+      "md_tables": 3,
+      "md_figures": 51,
+      "issues": []
+    },
+    {
+      "paper": "arbitrage-free-svi-volatility-surfaces",
+      "source": "Arbitrage-free SVI volatility surfaces.pdf",
+      "status": "success",
+      "page_count": 14,
+      "manifest_words": 9735,
+      "manifest_tables": 0,
+      "manifest_figures": 19,
+      "md_tables": 0,
+      "md_figures": 19,
+      "issues": []
+    },
+    {
+      "paper": "breeden-pricesstatecontingentclaims-1978",
+      "source": "Breeden-PricesStateContingentClaims-1978.pdf",
+      "status": "success",
+      "page_count": 32,
+      "manifest_words": 13590,
+      "manifest_tables": 5,
+      "manifest_figures": 32,
+      "md_tables": 5,
+      "md_figures": 32,
+      "issues": [
+        "markdown_contains_null_bytes"
+      ]
+    },
+    {
+      "paper": "deep-hedging",
+      "source": "Deep hedging.pdf",
+      "status": "success",
+      "page_count": 22,
+      "manifest_words": 17469,
+      "manifest_tables": 0,
+      "manifest_figures": 22,
+      "md_tables": 0,
+      "md_figures": 22,
+      "issues": []
+    },
+    {
+      "paper": "dynamics-of-implied-volatility-surfaces",
+      "source": "Dynamics of implied volatility surfaces.pdf",
+      "status": "success",
+      "page_count": 17,
+      "manifest_words": 10606,
+      "manifest_tables": 7,
+      "manifest_figures": 24,
+      "md_tables": 7,
+      "md_figures": 24,
+      "issues": []
+    },
+    {
+      "paper": "functional-data-analysis-second-edition-jim-ramsay-james-ramsay-b-w-silverman-henry-overton-springer-series-in-statistics-2nd-ed-new-9780387227511-2fed94b53610c74268fe3b4230577388-annas-archive",
+      "source": "Functional Data Analysis, Second Edition -- Jim Ramsay, James Ramsay, B_ W_ Silverman, Henry Overton -- Springer series in statistics, 2nd ed, New -- 9780387227511 -- 2fed94b53610c74268fe3b4230577388 -- Anna\u2019s Archive.pdf",
+      "status": "success",
+      "page_count": 432,
+      "manifest_words": 149087,
+      "manifest_tables": 3,
+      "manifest_figures": 140,
+      "md_tables": 3,
+      "md_figures": 140,
+      "issues": []
+    },
+    {
+      "paper": "nips-2015-learning-structured-output-representation-using-deep-conditional-generative-models-paper",
+      "source": "NIPS-2015-learning-structured-output-representation-using-deep-conditional-generative-models-Paper.pdf",
+      "status": "success",
+      "page_count": 9,
+      "manifest_words": 5674,
+      "manifest_tables": 6,
+      "manifest_figures": 12,
+      "md_tables": 6,
+      "md_figures": 12,
+      "issues": []
+    },
+    {
+      "paper": "out",
+      "source": "out.pdf",
+      "status": "success",
+      "page_count": 11,
+      "manifest_words": 132,
+      "manifest_tables": 0,
+      "manifest_figures": 22,
+      "md_tables": 0,
+      "md_figures": 22,
+      "issues": [
+        "very_low_word_count_132_for_11_pages"
+      ]
+    },
+    {
+      "paper": "s0022109010000220",
+      "source": "S0022109010000220.pdf",
+      "status": "success",
+      "page_count": 22,
+      "manifest_words": 12013,
+      "manifest_tables": 11,
+      "manifest_figures": 1,
+      "md_tables": 11,
+      "md_figures": 1,
+      "issues": []
+    },
+    {
+      "paper": "s00780-005-0162-y",
+      "source": "s00780-005-0162-y.pdf",
+      "status": "success",
+      "page_count": 16,
+      "manifest_words": 7300,
+      "manifest_tables": 0,
+      "manifest_figures": 1,
+      "md_tables": 0,
+      "md_figures": 1,
+      "issues": []
+    },
+    {
+      "paper": "s11147-023-09195-5",
+      "source": "s11147-023-09195-5.pdf",
+      "status": "success",
+      "page_count": 35,
+      "manifest_words": 10265,
+      "manifest_tables": 11,
+      "manifest_figures": 11,
+      "md_tables": 11,
+      "md_figures": 11,
+      "issues": []
+    },
+    {
+      "paper": "simulation-of-arbitrage-free-implied-volatility-surfaces",
+      "source": "Simulation of Arbitrage-Free Implied Volatility Surfaces.pdf",
+      "status": "success",
+      "page_count": 29,
+      "manifest_words": 8637,
+      "manifest_tables": 16,
+      "manifest_figures": 39,
+      "md_tables": 16,
+      "md_figures": 39,
+      "issues": []
+    },
+    {
+      "paper": "stochastic-models-of-implied-volatility-surfaces",
+      "source": "Stochastic Models of Implied Volatility Surfaces.pdf",
+      "status": "success",
+      "page_count": 17,
+      "manifest_words": 608,
+      "manifest_tables": 0,
+      "manifest_figures": 17,
+      "md_tables": 0,
+      "md_figures": 17,
+      "issues": [
+        "very_low_word_count_608_for_17_pages"
+      ]
+    }
+  ],
+  "flagged": [
+    {
+      "paper": "1-s2-0-0022053179900437-main",
+      "source": "1-s2.0-0022053179900437-main.pdf",
+      "status": "success",
+      "page_count": 28,
+      "manifest_words": 13251,
+      "manifest_tables": 0,
+      "manifest_figures": 449,
+      "md_tables": 0,
+      "md_figures": 449,
+      "issues": [
+        "figure_density_high_449_over_28_pages"
+      ]
+    },
+    {
+      "paper": "1210-7111v4",
+      "source": "1210.7111v4.pdf",
+      "status": "success",
+      "page_count": 20,
+      "manifest_words": 10511,
+      "manifest_tables": 0,
+      "manifest_figures": 2,
+      "md_tables": 0,
+      "md_figures": 2,
+      "issues": [
+        "markdown_contains_null_bytes"
+      ]
+    },
+    {
+      "paper": "1906-05065v3",
+      "source": "1906.05065v3.pdf",
+      "status": "success",
+      "page_count": 30,
+      "manifest_words": 35685,
+      "manifest_tables": 51,
+      "manifest_figures": 17,
+      "md_tables": 51,
+      "md_figures": 17,
+      "issues": [
+        "markdown_contains_null_bytes"
+      ]
+    },
+    {
+      "paper": "2108-04941v3",
+      "source": "2108.04941v3.pdf",
+      "status": "success",
+      "page_count": 20,
+      "manifest_words": 9221,
+      "manifest_tables": 11,
+      "manifest_figures": 8,
+      "md_tables": 11,
+      "md_figures": 8,
+      "issues": [
+        "markdown_contains_null_bytes"
+      ]
+    },
+    {
+      "paper": "2108-08481v6",
+      "source": "2108.08481v6.pdf",
+      "status": "success",
+      "page_count": 97,
+      "manifest_words": 41199,
+      "manifest_tables": 2,
+      "manifest_figures": 25,
+      "md_tables": 2,
+      "md_figures": 25,
+      "issues": [
+        "markdown_contains_null_bytes"
+      ]
+    },
+    {
+      "paper": "breeden-pricesstatecontingentclaims-1978",
+      "source": "Breeden-PricesStateContingentClaims-1978.pdf",
+      "status": "success",
+      "page_count": 32,
+      "manifest_words": 13590,
+      "manifest_tables": 5,
+      "manifest_figures": 32,
+      "md_tables": 5,
+      "md_figures": 32,
+      "issues": [
+        "markdown_contains_null_bytes"
+      ]
+    },
+    {
+      "paper": "out",
+      "source": "out.pdf",
+      "status": "success",
+      "page_count": 11,
+      "manifest_words": 132,
+      "manifest_tables": 0,
+      "manifest_figures": 22,
+      "md_tables": 0,
+      "md_figures": 22,
+      "issues": [
+        "very_low_word_count_132_for_11_pages"
+      ]
+    },
+    {
+      "paper": "stochastic-models-of-implied-volatility-surfaces",
+      "source": "Stochastic Models of Implied Volatility Surfaces.pdf",
+      "status": "success",
+      "page_count": 17,
+      "manifest_words": 608,
+      "manifest_tables": 0,
+      "manifest_figures": 17,
+      "md_tables": 0,
+      "md_figures": 17,
+      "issues": [
+        "very_low_word_count_608_for_17_pages"
+      ]
+    }
+  ]
+}

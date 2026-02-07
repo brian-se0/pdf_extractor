@@ -1,0 +1,33 @@
+where φ is the standard normal pdf – to mimick a non-parametric estimation of the jump
+"distribution implied by the data, and a double exponential model (see [23]), in which case"
+(cid:16) (cid:17)
+F (n)(dy) = (1 − p(n)) e−a(n) dy. − |x|1x<0 + p(n) e−a(n) + x1x>0
+"Proposition 3.2. If X satisﬁes (3.3), then the characteristic function φX (ω) := EQ[eiω Xτ ]"
+(cid:80)N
+"n=1 Ψ(n)(ω)(τ −τn−1), where is given by φX (ω) = e"
+(cid:90)
+Ψ(n)(ω) = − 1 (cid:1) ν(n)(dy) . (cid:0)eiωy − 1 − iωy1|y|≤1
+(3.4) 2 (σ(n))2 ω2 +
+R
+"Proof. Apply the L´evy-Khintchine formula [2, Chap 1.2.4] within each period."
+The speciﬁc form of the L´evy characteristic function appearing in (3.4) for the models we
+employ in the numerical analysis appear in Table 1. The parameters for the appropriate period
+should be inserted into these expression when computing the full characteristic function. We
+also record the characteristic function for the CTMC model in the same table.
+"4. Model Parameter Generation. In the previous section, we described two classes of"
+stochastic models that can be calibrated to option prices. The SDE model parameters θ are
+estimated by minimising a weighted average of the mean-squared error in option prices and
+the Wasserstein distance between the model implied risk-neutral densities and the densities
+implied by a B-spline ﬁt of the IV smiles. Once the SDE model parameters are estimated
+"on market data, our goal is to generate new synthetic parameters θ that are consistent with"
+the historical data. This allows us to produce synthetic IV surfaces that are guaranteed to be
+both arbitrage-free and representative of real surfaces.
+4.1. Variational Autoencoder (VAE). Variational Autoencoders [22] are generative mod-
+"els that aim to train a multivariate latent representation, known as an encoding, from a collec-"
+tion of data. A key advantage of VAEs over conventional dimensionality reduction techniques
+"such as vanilla autoencoders (AEs), PCA, or KPCA is their ability to generalize the latent"
+feature space. A well-known issue of AEs is that the latent space may not be continuous and
+may not exhibit any well deﬁned structure. This makes it diﬃcult to interpolate between
+"training data points and poses diﬃculties in generating new data, as demonstrated by [27]. In"
+"[27], attempts to rectify such issues are made by regularizing the training procedure to ensure"
+"the latent manifold is smooth and locally convex. VAEs, however, place a prior on the latent"

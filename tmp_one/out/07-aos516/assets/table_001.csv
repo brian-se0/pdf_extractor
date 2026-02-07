@@ -1,0 +1,32 @@
+Setup/shift 0 0.05 0.1 0.15 0.2 0.25
+"(a) 10, 5, 8, 4 0.13 0.41 0.85 0.96 1 1"
+"(a) 4, 2, 2, 1 0.12 0.48 0.87 0.96 1 1"
+"(a) 2, 1, 1.5, 2 0.14 0.372 0.704 0.872 0.92 0.9"
+"0.10 0.44 0.86 0.95 1 1 (b) 10, 5, 8, 4 D1"
+"1 1 1 1 1 1 (b) 10, 5, 8, 4 D2"
+"(small shift, small difference in eigenvalues). The level approximation seems to"
+− λ(p) ) becomes smaller. be less precise if the difference in the eingenvalues (λ(p)
+1 2
+"This can be explained by relative small sample-size n, small number of bootstrap-"
+"replications and increasing estimation-error as argued in Theorem 2, assertion (iii)."
+"In comparison to our general setup (4), we used an equidistant and common"
+"design for all functions. This simpliﬁcation is necessary, it simpliﬁes and speeds-"
+"up the simulations, in particular, using general random and observation-speciﬁc"
+design makes the simulation computationally untractable.
+"Second, we omitted the additional observation error, this corresponds to the"
+standard assumptions in the functional principal components theory. As argued in
+"Section 2.2, the inference based on the directly observed functions and estimated"
+is ﬁrst-order equivalent under mild conditions implied by Theorems 1 functions Xi
+"and 2. In order to illustrate this theoretical result in the simulation, we used the"
+following setup:
+√ √
+", X(1) (tik) = β(1) 2 sin(2πtik) + β(1) 2 cos(2πtik) + ε(1)"
+i ik 1i 2i
+√ √
+"X(2) , (tik) = β(2) 2 sin{2π(tik + δ)} + β(2) 2 cos{2π(tik + δ)} + ε(2)"
+i ik 1i 2i
+"∼ N(0, 0.25), p = 1, 2, all other parameters remain the same as in the where ε(p)"
+ik
+"simulation setup “a.” Using this setup, we recalculate the simulation presented in"
+", p = 1, 2, we the second “row” of Table 1, for estimation of the functions X(p)"
+i

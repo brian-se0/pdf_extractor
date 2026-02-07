@@ -1,0 +1,131 @@
+{
+  "paper_id": "1-s2-0-0304414981900260-main",
+  "source_file": "1-s2.0-0304414981900260-main.pdf",
+  "source_path": "/Volumes/T9/lit_review/1-s2.0-0304414981900260-main.pdf",
+  "status": "success",
+  "page_count": 46,
+  "counts": {
+    "words": 20347,
+    "tables": 0,
+    "figures": 0,
+    "chars": 115205
+  },
+  "metadata": {
+    "title": "PII: 0304-4149(81)90026-0",
+    "authors": [],
+    "year": 1981,
+    "doi": null,
+    "raw_pdf_metadata": {
+      "format": "PDF 1.2",
+      "title": "PII: 0304-4149(81)90026-0",
+      "author": null,
+      "subject": null,
+      "keywords": null,
+      "creator": "Acrobat 3.0 Capture Plug-in",
+      "producer": "Acrobat 3.0 Import Plug-in",
+      "creationDate": "D:20011221104256",
+      "modDate": "D:20011221115420",
+      "trapped": null,
+      "encryption": null
+    }
+  },
+  "warnings": [
+    "discarded 1 tiny-placement embedded figure(s)",
+    "discarded 2111 dense-page embedded figure candidate(s)"
+  ],
+  "errors": [],
+  "fallback": {
+    "used": false,
+    "primary_failed_stage": "none",
+    "fallback_used": "none",
+    "reasons": [],
+    "camelot_used": false,
+    "ocr_used": false,
+    "stdout_logged": false
+  },
+  "scan_like_page_ratio": 0.0,
+  "low_text_page_ratio": 0.0,
+  "runtime_seconds": 15.58,
+  "tool_versions": {
+    "pymupdf": "1.26.7",
+    "pdfplumber": "0.11.9",
+    "camelot-py": "1.0.9",
+    "pytesseract": "0.3.13"
+  },
+  "extraction_audit": {
+    "ok": true,
+    "issues": [],
+    "issue_details": {},
+    "metrics": {
+      "chars": 115205,
+      "pages": 46,
+      "table_reference_count": 0,
+      "figure_reference_count": 0,
+      "equation_reference_count": 0,
+      "equation_like_line_count": 414,
+      "garbled_math_token_count": 0,
+      "extracted_table_count": 0,
+      "extracted_figure_count": 0,
+      "low_text_page_ratio": 0.0,
+      "scan_like_page_ratio": 0.0
+    }
+  },
+  "quality_checks": [
+    {
+      "check": "output_folder_exists",
+      "status": "pass",
+      "detail": "/Volumes/T9/pdf_extractor/tmp_confidence_full2/1-s2-0-0304414981900260-main"
+    },
+    {
+      "check": "paper_md_exists",
+      "status": "pass",
+      "detail": "/Volumes/T9/pdf_extractor/tmp_confidence_full2/1-s2-0-0304414981900260-main/paper.md"
+    },
+    {
+      "check": "manifest_exists",
+      "status": "pass",
+      "detail": "/Volumes/T9/pdf_extractor/tmp_confidence_full2/1-s2-0-0304414981900260-main/manifest.json"
+    },
+    {
+      "check": "text_threshold",
+      "status": "pass",
+      "detail": "chars=115205, scan_like=False"
+    },
+    {
+      "check": "figure_count_match",
+      "status": "pass",
+      "detail": "markdown=0, manifest=0"
+    },
+    {
+      "check": "table_count_match",
+      "status": "pass",
+      "detail": "markdown=0, manifest=0"
+    },
+    {
+      "check": "figure_assets_exist",
+      "status": "pass",
+      "detail": "all figure assets exist"
+    },
+    {
+      "check": "fallback_stdout_manifest_alignment",
+      "status": "pass",
+      "detail": "fallback not used"
+    }
+  ],
+  "confidence": {
+    "score": 0.99,
+    "label": "high",
+    "base": 0.95,
+    "penalties": [],
+    "bonuses": [
+      {
+        "reason": "audit_clean",
+        "weight": 0.02
+      },
+      {
+        "reason": "primary_path_success",
+        "weight": 0.02
+      }
+    ]
+  }
+}

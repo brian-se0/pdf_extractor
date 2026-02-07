@@ -1,0 +1,25 @@
+2,
+ðThe price is non-decreasing in maturityÞ x2 P 12,
+and this would result in 11 ¼ 21þ1,
+2 P 12.,
+,"These two situations illustrate why the classical deﬁnitions of vertical, butterﬂy and cal-"
+endar spreads need to be generalized when the quoted options can have any maturities and,
+strikes. The following calendar vertical (resp. butterﬂy),spreads must be thought of as
+weighted averages of calendar spreads and classical vertical,(resp. butterﬂy) spreads.
+"Vertical Deﬁnition 2.1 (Calendar Spreads). ""i1, i2 2 s1, mb","s.t. i1 6 i2, 8j1 2 s0; ni1 t;"
+P K i2 8j2 2 s0; ni2 t s.t. K i1,
+j1 j2,
+CVSi1;i2 (cid:3) Ci2;ASK (cid:4) Ci1;BID,
+j1;j2 j2 j1,
+using Eq. (1).,
+"Butterﬂy Deﬁnition 2.2 (Calendar Spreads). ""i, i1, i2 2 s1, mb","s.t. and i 6 i1 i 6 i2,"
+< K i,
+j < K i2 j1 j2,
+Ci1;ASK Ci;BID (cid:4) Ci;BID (cid:4) Ci2;ASK,
+j j j1 j2,
+CBSi;i1;i2 (cid:3) (cid:4),
+j;j1;j2,
+K i j (cid:4) K i1 j j1 j2 (cid:4) K i,
+using Eq. (1).,
+,"Note that the above deﬁnitions generalize those of classical butterﬂy, calendar and ver-"
+tical spreads. Indeed Deﬁnition 2.1 is the one of a calendar,spread when i1 < i2 and

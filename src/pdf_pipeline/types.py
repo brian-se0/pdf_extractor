@@ -22,6 +22,8 @@ class PipelineConfig:
     min_low_text_page_ratio: float = 0.6
     scan_like_image_area_ratio: float = 0.7
     scan_like_page_ratio: float = 0.5
+    direct_ocr_scan_like_ratio_threshold: float = 0.85
+    direct_ocr_low_text_ratio_threshold: float = 0.85
 
 
 @dataclass
@@ -50,6 +52,8 @@ class TableRecord:
     caption: str | None = None
     source: str = "pdfplumber"
     csv_file: str | None = None
+    quality_score: float = 1.0
+    quality_flags: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -59,6 +63,8 @@ class FigureRecord:
     file_name: str
     caption: str | None = None
     source: str = "embedded"
+    quality_score: float = 1.0
+    quality_flags: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -91,6 +97,7 @@ class ExtractionPassResult:
     stage_errors: dict[str, str] = field(default_factory=dict)
     page_count: int = 0
     table_marker_pages: set[int] = field(default_factory=set)
+    table_reference_count: int = 0
     malformed_table_pages: set[int] = field(default_factory=set)
 
 
@@ -115,6 +122,9 @@ class PaperProcessingResult:
     quality_checks: list[dict[str, str]] = field(default_factory=list)
     extraction_audit: dict[str, Any] = field(default_factory=dict)
     extraction_issues: list[str] = field(default_factory=list)
+    confidence: dict[str, Any] = field(default_factory=dict)
+    confidence_score: float = 0.0
+    confidence_label: str = "low"
 
     @property
     def ok(self) -> bool:

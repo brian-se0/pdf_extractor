@@ -1,0 +1,41 @@
+Individual Equity Options
+spread. With the assurance that the bias from adopting BS implied volatility
+"is small enough to be ignored, we adhere to convention and use only Black–"
+Scholes smiles to surrogate the pricing structure of options.
+4. Skewness and the Structure of Option Prices: Empirical Tests
+This section establishes the differential pricing of individual stock options
+versus the market index and empirically relates it to the asymmetry and the
+heaviness of the risk-neutral distributions. We also present a framework to
+study the empirical determinants of risk-neutral index skews.
+4.1 Quantifying the structure of option prices
+To quantify the structure of option prices we use options of maturity (cid:5) to
+"estimate the model,"
+j = 1(cid:3) (cid:4) (cid:4) (cid:4) (cid:3) J (cid:3) (30) + (cid:28) ln(cid:1)yj (cid:2) + (cid:29)j (cid:3) ln(cid:1)(cid:16)(cid:6)yj (cid:8)(cid:2) = (cid:28)0
+"y = K/S across our sample of 30 stocks and the OEX, where, recall, is"
+option moneyness (and deterministic). An advantage of the speciﬁcation in
+Equation (30) is its potential consistency with empirical implied volatility
+curves that are both decreasing and convex in moneyness. This suggests a
+(cid:28) less than 0. We interpret (cid:28) as a measure of the ﬂatness of the implied
+volatility curve and designate it as the sensitivity of the implied volatility
+"curve to moneyness. In economic terms, a ﬂatter implied volatility curve"
+"simply states that prices of put options of nearby strikes are closer, while"
+those options that constitute a steeper curve have prices farther apart.
+"The model of Equation (30) is estimated weekly, and the estimated coefﬁ-"
+cients are pooled over all the weeks in the sample. Brieﬂy the procedure is as
+follows. Over each calendar day in the week we index the available options
+"by j and estimate the said model by least squares. Thus, for each stock, we"
+estimate Equation (30) for each of the 260 weeks for which sufﬁcient data
+"exist. Next, as in Fama and McBeth (1973), we time average the regression"
+(cid:16)
+"1 T T t coefﬁcients (say, =1 (cid:28)(cid:1)t(cid:2)). Each reported t-statistic is computed under"
+a ﬁrst-order serial correlation assumption for the coefﬁcient. The model is
+estimated using OTM puts and calls. As in the money puts (K/S > 1) can be
+"proxied by OTM calls, this is tantamount to using all the strikes in the cross"
+section of puts.
+Table 3 reports the average slope of the implied volatility curve for each
+of the 30 stocks and the OEX. We also report the estimated ATM implied
+"the results for short-term smiles. The volatility as exp(cid:1)(cid:28)0(cid:2). Consider ﬁrst,"
+"average ATM implied volatility for the OEX is 14%, while the average ATM"
+implied volatility over the 30 stocks is about 26%. With reference to the
+"estimate of (cid:28), we can make three observations. First, on average, (cid:28) is nega-"
+tive for all the individual stocks and the OEX. The slopes are all statistically

@@ -1,0 +1,29 @@
+,S&P 500,Single stock
+Number of underlyings,1,499
+Total number of price observations,"14,267,068","373,825,605"
+Avg. number of maturities per day,19.53,6.23
+Avg. number of strikes per maturity,185.61,31.96
+Total number of short-term ATM prices,"164,756","28,095,578"
+Total number of short-term Left Tail prices,"913,908","41,359,827"
+Total number of short-term Right Tail prices,"389,705","32,507,416"
+Total number of medium-term ATM prices,"1,912,580","35,874,503"
+Total number of medium-term Left Tail prices,"5,142,258","106,902,827"
+Total number of medium-term Right Tail prices,"1,482,504","79,423,161"
+Total number of long-term ATM prices,"1,455,950","4,834,453"
+Total number of long-term Left Tail prices,"2,284,378","24,655,963"
+Total number of long-term Right Tail prices,"521,029","20,171,877"
+This table presents a summary of the data used for cross-validating different methods to construct a vola-,,
+"tility surface, covering the period from January 2004 to July 2019. The data is categorized into short-,",,
+"medium-, and long-term based on the remaining time to maturity: 1 to 29, 30 to 365 days, and longer,",,
+"respectively. Moneyness is classified as at-the-money (ATM), left-tail, and right-tail if their moneyness",,
+"is between 0.95 and 1.05, below 0.95, and above 1.05, respectively. The table provides summary statis-",,
+"tics for the total number of price observations, the average number of maturities per day, and the aver-",,
+"age number of strikes per maturity. Additionally, it includes a breakdown of the total number of short-,",,
+"medium-, and long-term options, as well as whether the options have strikes below, close to, or above the",,
+current futures prices. All statistics pertain to options on the S&P 500 and single stock options,,
+"observations and using the remaining data to predict its value, conditional on one of",,
+the three methodologies. The iterative nature of this procedure enables us to evalu-,,
+"ate the forecast accuracy of each method when predicting the left-out price, based",,
+on the information contained in the other prices. We perform two prediction tasks:,,
+one that excludes the leftmost and rightmost points and another that includes all,,
+observations. This enables us to evaluate the sensitivity of each method to extrapola-,,

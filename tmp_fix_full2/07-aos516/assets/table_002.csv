@@ -1,0 +1,29 @@
+Setup/shift 0 0.05 0.1 0.15 0.2 0.25
+"(a) 10, 5, 8, 4 0.09 0.35 0.64 0.92 0.94 0.97"
+", γ (2) , γ (1) where γ (1) and g are mutually orthogonal functions on L2[0, 1] and"
+1 1 2
+γ (2) = (1 + υ2)−1/2{γ (1) + υg}. Basically we create the alternative by the con-
+2 2
+tamination of one of the “eigenfunctions” (in our case the second one) in the di-
+rection g and ensure (cid:5)γ (2) (cid:5) = 1. The amount of the contamination is controlled
+2
+(cid:5)2 − γ (2) by the parameter υ. Note that the exact squared integral difference (cid:5)γ (1)
+2 2
+"does not depend on function g. Thus, in the “functional sense” particular “direc-"
+tion of the alternative hypothesis” represented by the function g has no impact
+"on the power of the test. However, since we are using a nonparametric estima-"
+"tion technique, we might expect that rough (highly ﬂuctuating) functions g will"
+"yield higher error of estimation and, hence, decrease the precision (and power) of"
+"the test. Finally, a higher number of factor functions (L) in simulation may cause"
+less precise approximation of critical values and more bootstrap replications and
+larger sample-size may be needed. This can also be expected from Theorem 2 in
+Section 2.2—the variance of the estimated eigenfunctions depends on all eigen-
+functions corresponding to nonzero eingenvalues.
+4. Implied volatility analysis. In this section we present an application of the
+method discussed in previous sections to the implied volatilities of European op-
+tions on the German stock index (ODAX). Implied volatilities are derived from the
+Black–Scholes (BS) pricing formula for European options; see Black and Scholes
+(1973). European call and put options are derivatives written on an underlying asset
+"with price process Si , which yield the pay-off max(SI −K, 0) and max(K −SI , 0),"
+"respectively. Here i denotes the current day, I the expiration day and K the strike"
+price. Time to maturity is deﬁned as τ = I − i. The BS pricing formula for a Call

@@ -1,0 +1,19 @@
+The Review of Financial Studies / v 16 n 1 2003
+"As our intent is to estimate a single coefﬁcient, (cid:15), and test the restrictions"
+"embedded within Equation (37), the GMM appears to be an attractive estima-"
+"tion method for several reasons. First, unlike return volatility, the estimates"
+of physical skews and kurtosis require a fairly long time series and will be
+measured with error [Merton (1980) and Harvey and Siddique (2000)]. There-
+fore the market skew formulation of Equation (37) is susceptible to an errors
+"in variables problem. Second, the return standard deviation and the excess"
+ˆ
+kurtosis enter nonlinearly in Equation (37) and may be correlated with (cid:29).
+"Finally, the minimized GMM criterion function (multiplied by T ), (cid:5) T , offers"
+a convenient approach to assess misspeciﬁcations in Equation (37). The (cid:5) T
+statistic is chi-square distributed with L − 1 degrees of freedom (given L
+instruments).
+Before turning to a discussion of GMM estimation results reported in
+"panels A and B of Table 7, some clariﬁcations are in order. First, Theorem 2"
+applies for a particular (cid:5). We therefore generate a nonoverlapping series of
+risk-neutral index skews from options with maturities of 58 and 86 days.
+"Second, estimates of physical skews and kurtosis are sensitive to the choice"

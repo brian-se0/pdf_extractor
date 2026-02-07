@@ -1,0 +1,44 @@
+,,Sign of,,,,,,,,,
+,,skewness,,,,Univariate regression,,,,,
+,,,,,SKEWn(cid:1)t(cid:2) = (cid:21)0,+ (cid:21)1SKEWm(cid:1)t(cid:2) + (cid:29)(cid:1)t(cid:2),,,,Price of moments,
+,SKEWn,,SKEWn >,,,,,,√,,
+Ticker,< 0,,SKEWm,(cid:21)0,t(cid:1)(cid:21)0(cid:2),(cid:21)1,t(cid:1)(cid:21)1(cid:2),R2,V,,SKEW KURT
+1. AIG,68,,96,0(cid:10)11,1(cid:10)43,0(cid:10)29,4(cid:10)46,7(cid:10)2,7(cid:10)98,−0(cid:10)21,2.20
+2. AIT,83,,77,−0(cid:10)54,−3(cid:10)77,0(cid:10)11,0(cid:10)85,0(cid:10)3,6(cid:10)59,−0(cid:10)65,4.18
+3. AN,69,,84,0(cid:10)35,1(cid:10)79,0(cid:10)67,3(cid:10)92,5(cid:10)9,6(cid:10)59,−0(cid:10)38,5.00
+4. AXP,48,,90,−0(cid:10)08,−0(cid:10)50,0(cid:10)04,0(cid:10)28,0(cid:10)0,10(cid:10)93,−0(cid:10)12,4.51
+5. BA,58,,94,0(cid:10)17,1(cid:10)65,0(cid:10)29,3(cid:10)21,3(cid:10)8,9(cid:10)16,−0(cid:10)14,4.54
+6. BAC,77,,88,0(cid:10)13,1(cid:10)13,0(cid:10)52,5(cid:10)29,9(cid:10)9,10(cid:10)48,−0(cid:10)44,3.99
+7. BEL,79,,72,−0(cid:10)89,−4(cid:10)86,−0(cid:10)21,−1(cid:10)28,0(cid:10)7,7(cid:10)09,−0(cid:10)68,5.62
+8. BMY,74,,86,0(cid:10)22,1(cid:10)73,0(cid:10)63,5(cid:10)68,11(cid:10)1,7(cid:10)42,−0(cid:10)46,4.46
+9. CCI,69,,92,−0(cid:10)01,−0(cid:10)06,0(cid:10)25,2(cid:10)98,3(cid:10)3,12(cid:10)71,−0(cid:10)28,3.88
+10. DD,69,,92,−0(cid:10)00,−0(cid:10)04,0(cid:10)24,2(cid:10)77,2(cid:10)9,8(cid:10)39,−0(cid:10)26,3.87
+11. DIS,62,,98,−0(cid:10)09,−1(cid:10)28,0(cid:10)04,0(cid:10)61,0(cid:10)2,10(cid:10)17,−0(cid:10)13,3.18
+12. F,58,,93,0(cid:10)05,0(cid:10)39,0(cid:10)16,1(cid:10)55,0(cid:10)9,11(cid:10)02,−0(cid:10)13,3.98
+13. GE,88,,87,−0(cid:10)08,−0(cid:10)97,0(cid:10)41,5(cid:10)37,10(cid:10)0,7(cid:10)60,−0(cid:10)53,3.90
+14. GM,56,,95,−0(cid:10)01,−0(cid:10)15,0(cid:10)07,1(cid:10)00,0(cid:10)4,11(cid:10)07,−0(cid:10)09,3.53
+15. HWP,61,,96,0(cid:10)18,2(cid:10)48,0(cid:10)32,5(cid:10)06,9(cid:10)0,11(cid:10)85,−0(cid:10)17,2.33
+16. IBM,43,,98,0(cid:10)27,3(cid:10)92,0(cid:10)20,3(cid:10)47,4(cid:10)5,10(cid:10)49,0(cid:10)04,2.89
+17. JNJ,65,,91,0(cid:10)28,2(cid:10)36,0(cid:10)52,5(cid:10)20,9(cid:10)6,8(cid:10)49,−0(cid:10)30,4.12
+18. KO,87,,82,−0(cid:10)21,−1(cid:10)93,0(cid:10)32,3(cid:10)44,4(cid:10)4,8(cid:10)27,−0(cid:10)56,4.48
+19. MCD,71,,85,−0(cid:10)34,−2(cid:10)22,0(cid:10)07,0(cid:10)51,0(cid:10)1,8(cid:10)51,−0(cid:10)41,5.18
+20. MCQ,53,,91,−0(cid:10)09,−0(cid:10)81,0(cid:10)05,0(cid:10)48,0(cid:10)1,12(cid:10)18,−0(cid:10)15,3.78
+21. MMM,85,,95,0(cid:10)03,0(cid:10)40,0(cid:10)36,5(cid:10)55,10(cid:10)7,7(cid:10)27,−0(cid:10)36,3.28
+22. MOB,77,,88,−0(cid:10)15,−1(cid:10)43,0(cid:10)22,2(cid:10)54,2(cid:10)4,6(cid:10)47,−0(cid:10)39,3.47
+23. MRK,51,,86,−0(cid:10)43,−2(cid:10)65,−0(cid:10)24,−1(cid:10)76,1(cid:10)2,9(cid:10)38,−0(cid:10)16,4.41
+24. NT,37,,93,0(cid:10)16,1(cid:10)07,0(cid:10)18,1(cid:10)40,0(cid:10)8,10(cid:10)44,−0(cid:10)04,4.03
+25. PEP,72,,87,−0(cid:10)04,−0(cid:10)26,0(cid:10)33,2(cid:10)78,2(cid:10)9,8(cid:10)67,−0(cid:10)39,5.87
+26. SLB,50,,94,0(cid:10)13,1(cid:10)11,0(cid:10)19,1(cid:10)82,1(cid:10)3,8(cid:10)74,−0(cid:10)07,3.09
+27. T,78,,76,−0(cid:10)76,−4(cid:10)75,−0(cid:10)14,−1(cid:10)01,0(cid:10)4,7(cid:10)28,−0(cid:10)61,6.10
+28. WMT,70,,88,0(cid:10)20,1(cid:10)53,0(cid:10)53,4(cid:10)78,8(cid:10)2,10(cid:10)34,−0(cid:10)38,4.18
+29. XON,83,,82,−0(cid:10)25,−1(cid:10)42,0(cid:10)31,2(cid:10)07,1(cid:10)6,5(cid:10)93,−0(cid:10)58,5.49
+30. XRX,77,,93,−0(cid:10)09,−1(cid:10)19,0(cid:10)22,3(cid:10)40,4(cid:10)3,9(cid:10)27,−0(cid:10)33,2.50
+31. OEX,100,,,,,,,,5(cid:10)56,−1(cid:10)09,3.99
+,"For each of the 30 stocks and the S&P 100,",,,,the table reports three sets of numbers relating to the weekly risk-neutral moments,,,,,,
+estimated. In the ﬁrst,,,"two columns, we report (i) the percentage of observations for which SKEWn < 0, and (ii) the percentage",,,,,,,,
+,"of observations for which the risk-neutral skewness of the stock, SKEWn,",,,,,,"is more than the risk-neutral skewness of the market,",,,,
+,"SKEWm (i.e., less negative than the risk-neutral index skewness). The next ﬁve columns present the results of an OLS regression:",,,,,,,,,,
+,"SKEWn(cid:1)t(cid:2) = (cid:21)0 + (cid:21)1SKEWm(cid:1)t(cid:2) + (cid:29)(cid:1)t(cid:2), where (cid:21)0, (cid:21)1 are the intercept and sensitivity coefﬁcients, respectively; t(cid:1)(cid:21)0(cid:2)(cid:3) t(cid:1)(cid:21)1(cid:2)",,,,,,,,,,
+,"are the t-statistics, and R2",,is the coefﬁcient of determination (in percent). The last,,,,,three columns display the average estimate,,,
+of,"the risk-neutral volatility, skew, and kurtosis (with one exception, all moments are statistically signiﬁcant and omitted). The",,,,,,,,,,
+volatility is,the square root of,,,"the variance contract,",,reported in percent. All moments used are of,,,,short-term maturity. The,

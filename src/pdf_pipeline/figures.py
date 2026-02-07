@@ -1,12 +1,59 @@
 from __future__ import annotations
 
+import hashlib
 import re
 from pathlib import Path
 from typing import Any
 
 from .types import FigureRecord, PageText
 
-FIGURE_CAPTION_RE = re.compile(r"^\s*figure\s+\d+([:.\-]\s*|\s+).*$", re.IGNORECASE)
+FIGURE_CAPTION_RE = re.compile(
+    r"^\s*(?:figure|fig\.?)\s+\d+([:.\-]\s*|\s+).*$",
+    re.IGNORECASE,
+)
+
+
+def _embedded_figure_quality(
+    width: int,
+    height: int,
+    payload_size: int,
+    has_caption: bool,
+    display_area_ratio: float,
+) -> tuple[float, list[str]]:
+    score = 0.7
+    flags: list[str] = []
+
+    area = width * height
+    if area < 20_000:
+        score -= 0.35
+        flags.append("small_area")
+
+    if width < 100 or height < 100:
+        score -= 0.25
+        flags.append("small_edge")
+
+    aspect_ratio = (width / height) if height else 0.0
+    if aspect_ratio > 12.0 or aspect_ratio < (1 / 12.0):
+        score -= 0.3
+        flags.append("extreme_aspect_ratio")
+
+    if payload_size < 2_500:
+        score -= 0.2
+        flags.append("small_payload")
+
+    if display_area_ratio < 0.01:
+        score -= 0.45
+        flags.append("tiny_placement")
+    elif display_area_ratio < 0.03:
+        score -= 0.18
+        flags.append("small_placement")
+
+    if has_caption:
+        score += 0.12
+        flags.append("caption_nearby")
+
+    score = max(0.0, min(1.0, score))
+    return score, flags
 
 
 def _find_figure_caption(page_text: str) -> str | None:
@@ -30,6 +77,18 @@ def _caption_blocks(page: Any) -> list[tuple[str, tuple[float, float, float, flo
     return results
 
 
+def _max_image_display_ratio(page: Any, xref: int) -> float:
+    page_area = max(float(page.rect.width) * float(page.rect.height), 1.0)
+    try:
+        rects = page.get_image_rects(xref) or []
+    except Exception:
+        return 0.0
+    if not rects:
+        return 0.0
+    areas = [max(float(rect.width), 0.0) * max(float(rect.height), 0.0) for rect in rects]
+    return max(areas) / page_area if areas else 0.0
+
+
 def extract_figures(
     doc: Any,
     assets_dir: Path,
@@ -38,7 +97,13 @@ def extract_figures(
     records: list[FigureRecord] = []
     warnings: list[str] = []
     seen_xrefs: set[int] = set()
+    seen_hashes: set[str] = set()
     counter = 1
+    discarded_low_quality = 0
+    discarded_duplicates = 0
+    discarded_tiny_placement = 0
+    discarded_dense_embedded = 0
+    discarded_page_cap = 0
 
     assets_dir.mkdir(parents=True, exist_ok=True)
 
@@ -47,8 +112,11 @@ def extract_figures(
         page_number = page_index + 1
         page_caption = _find_figure_caption(page_text_lookup.get(page_number, ""))
         page_had_embedded = False
+        accepted_on_page = 0
+        page_images = page.get_images(full=True)
+        dense_embedded_page = len(page_images) > 12
 
-        for image in page.get_images(full=True):
+        for image in page_images:
             if not image:
                 continue
             xref = int(image[0])
@@ -64,7 +132,38 @@ def extract_figures(
 
             width = int(image_dict.get("width", 0) or 0)
             height = int(image_dict.get("height", 0) or 0)
-            if width * height < 10000:
+            image_payload = image_dict["image"]
+            payload_size = len(image_payload)
+            display_area_ratio = _max_image_display_ratio(page, xref)
+
+            if page_caption is None and display_area_ratio < 0.008:
+                discarded_tiny_placement += 1
+                continue
+
+            if page_caption is None and dense_embedded_page and display_area_ratio < 0.035:
+                discarded_dense_embedded += 1
+                continue
+
+            score, flags = _embedded_figure_quality(
+                width=width,
+                height=height,
+                payload_size=payload_size,
+                has_caption=page_caption is not None,
+                display_area_ratio=display_area_ratio,
+            )
+            if score < 0.35:
+                discarded_low_quality += 1
+                continue
+
+            image_hash = hashlib.sha1(image_payload).hexdigest()[:16]
+            if image_hash in seen_hashes:
+                discarded_duplicates += 1
+                continue
+            seen_hashes.add(image_hash)
+
+            page_limit = 3 if dense_embedded_page and page_caption is None else 5
+            if page_caption is None and accepted_on_page >= page_limit:
+                discarded_page_cap += 1
                 continue
 
             ext = str(image_dict.get("ext", "png")).lower()
@@ -73,7 +172,7 @@ def extract_figures(
 
             file_name = f"fig_{counter:03d}.{ext}"
             file_path = assets_dir / file_name
-            file_path.write_bytes(image_dict["image"])
+            file_path.write_bytes(image_payload)
             records.append(
                 FigureRecord(
                     figure_id=f"figure_{counter:03d}",
@@ -81,10 +180,13 @@ def extract_figures(
                     file_name=file_name,
                     caption=page_caption,
                     source="embedded",
+                    quality_score=score,
+                    quality_flags=flags,
                 )
             )
             counter += 1
             page_had_embedded = True
+            accepted_on_page += 1
 
         if page_had_embedded:
             continue
@@ -111,6 +213,10 @@ def extract_figures(
 
             file_name = f"fig_{counter:03d}.png"
             pix.save(str(assets_dir / file_name))
+            crop_score = 0.78 if caption else 0.62
+            crop_flags = ["page_crop"]
+            if caption:
+                crop_flags.append("caption_nearby")
             records.append(
                 FigureRecord(
                     figure_id=f"figure_{counter:03d}",
@@ -118,10 +224,25 @@ def extract_figures(
                     file_name=file_name,
                     caption=caption,
                     source="page-crop",
+                    quality_score=crop_score,
+                    quality_flags=crop_flags,
                 )
             )
             counter += 1
             break
+
+    if discarded_low_quality:
+        warnings.append(f"discarded {discarded_low_quality} low-quality embedded figure(s)")
+    if discarded_duplicates:
+        warnings.append(f"discarded {discarded_duplicates} duplicate embedded figure(s)")
+    if discarded_tiny_placement:
+        warnings.append(f"discarded {discarded_tiny_placement} tiny-placement embedded figure(s)")
+    if discarded_dense_embedded:
+        warnings.append(
+            f"discarded {discarded_dense_embedded} dense-page embedded figure candidate(s)"
+        )
+    if discarded_page_cap:
+        warnings.append(f"discarded {discarded_page_cap} embedded figure(s) due to page cap")
 
     return records, warnings
 

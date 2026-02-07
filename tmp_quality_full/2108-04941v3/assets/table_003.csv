@@ -1,0 +1,32 @@
+"and butterﬂy spread options, rather than simple calls. We use standard formulas [28] to"
+"convert raw quotes into IVs at deltas of 0.1, 0.25, 0.5, 0.75, and 0.9 for each maturity."
+5.2. SDE Model Speciﬁcs. The CTMC model assumes three regimes with a Wasserstein’s
+"distance penalty2 of 0.3. To reduce the number of parameters to ﬁt, initial regime probabilities"
+π are set to 1
+3 . To take advantage of the label
+"µ of each regime is assumed to be in ascending order, 1 ≤ µn 2 ≤ µn 3 . The structure of"
+the transition matrix is detailed in Appendix D. We ﬁt the CTMC model iteratively by ﬁrst
+"optimizing for the parameters of the ﬁrst maturity, then iteratively optimizing the parameters"
+of the i’th maturity by holding the parameters of the ﬁrst (i−1) maturities ﬁxed. For the L´evy
+"additive processes, we ﬁt the parameters subject to a Wasserstein’s distance penalty of 0.1 for"
+time to maturity (TTM) less than 1 year and 0.3 otherwise to increase the regularising power
+"at larger TTM. Moreover, we apply a penalty of 10−8 on day-to-day parameter percentage"
+changes to stabilise model parameters without sacriﬁcing ﬁt quality. For the Gaussian Mixture
+"JD model, we assume a mixture of two Gaussians, as adding more factors did not increase the"
+ﬁt quality. The penalty varies with maturity as long maturities tend to have stable pdfs but
+"less stable IVs, while shorter maturities tend to have less stable pdfs. Table 2 show the median"
+"rmse across days, where the rmse on a given day is computed across all Delta/maturity pairs,"
+for the collection of models and FX pairs we study.
+5.3. VAE Model Speciﬁcs. The encoder and decoder of the VAE have four fully con-
+"nected hidden layers, with 64, 128, 256, and 512 nodes each, and a single output layer map-"
+ping to the appropriate dimensions. The network structure was selected using a validation
+"set, however, we found that any network exceeding four layers with a minimum of 64 node"
+in each layer is suﬃcient to produce satisfactory results. We used ADAM with weight decay
+"(AdamW) with a ﬁxed learning rate of 0.001. Appropriate transformations (normalizations,"
+log-transforms) are performed to ensure standardized inputs. Details of the transformations
+used can be found in Table 6 in Appendix E. We perform a grid search over β values and
+number of latent dimensions summarized in Table 3. The table reports an evaluation metric
+described in the next subsection. Training is carried out with batches of 200 randomly sam-
+"pled days from the training set. We set a ﬁxed training duration of 2, 000 epochs as we ﬁnd"
+that is usually suﬃcient to train the β-VAE.
+5.4. Benchmarks. We introduce three benchmarks to assess the performance of our ap-

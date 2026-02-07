@@ -1,0 +1,5 @@
+,Figure A4. Simulation of S and ξ from the learnt neural network model (without imposing drift correc-,,,
+tion and diﬀusion shrinking).,,,,
+Table A1. Hyperparameters used for the benchmark model.,,,,
+Hyperparameters,NN depth,NN width,Sparsity ratio,Activation function
+Values,3,256,0.5,ReLU

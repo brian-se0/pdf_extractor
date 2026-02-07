@@ -44,3 +44,26 @@ Extraction audit lines are also printed to flag likely missing content:
 - `<output>/batch_report.json`
 
 `manifest.json` and `batch_report.json` include an `extraction_audit` section with per-file and batch-level issue summaries.
+
+Each `manifest.json` and batch `results[]` entry also includes a `confidence` object with:
+- `score` (0-1)
+- `label` (`high`/`medium`/`low`)
+- scoring breakdown (`penalties`/`bonuses`)
+
+## Quality Evaluation
+
+After a run, evaluate overall extraction quality from the batch report:
+
+```bash
+python -m pdf_pipeline.quality_eval \
+  --batch-report /Volumes/T9/lit_review/extracted/batch_report.json
+```
+
+Optional: compare against a gold expectation file and write JSON output:
+
+```bash
+python -m pdf_pipeline.quality_eval \
+  --batch-report /Volumes/T9/lit_review/extracted/batch_report.json \
+  --gold /path/to/gold_expectations.json \
+  --output /Volumes/T9/lit_review/extracted/quality_eval.json
+```

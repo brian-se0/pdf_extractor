@@ -1,0 +1,136 @@
+{
+  "paper_id": "simulation-of-arbitrage-free-implied-volatility-surfaces",
+  "source_file": "Simulation of Arbitrage-Free Implied Volatility Surfaces.pdf",
+  "source_path": "/Volumes/T9/lit_review/Simulation of Arbitrage-Free Implied Volatility Surfaces.pdf",
+  "status": "success",
+  "page_count": 29,
+  "counts": {
+    "words": 8527,
+    "tables": 2,
+    "figures": 21,
+    "chars": 51854
+  },
+  "metadata": {
+    "title": "Simulation of Arbitrage-Free Implied Volatility Surfaces",
+    "authors": [],
+    "year": 2023,
+    "doi": "10.1080/1350486X.2023.2277960",
+    "raw_pdf_metadata": {
+      "format": "PDF 1.5",
+      "title": "Simulation of Arbitrage-Free Implied Volatility Surfaces",
+      "author": null,
+      "subject": null,
+      "keywords": null,
+      "creator": "LaTeX with hyperref package + hypdvips",
+      "producer": "Acrobat Distiller 8.1.0 (Windows); modified using iTextSharp™ 5.5.8 ©2000-2015 iText Group NV (AGPL-version)",
+      "creationDate": "D:20231122173642+05'30'",
+      "modDate": "D:20231122173746+05'30'",
+      "trapped": null,
+      "encryption": null
+    }
+  },
+  "warnings": [
+    "discarded 17 tiny-placement embedded figure(s)",
+    "discarded 1 dense-page embedded figure candidate(s)",
+    "camelot lattice produced no usable tables; using stream output",
+    "camelot:stream table quality filter dropped 1 low-quality table(s)"
+  ],
+  "errors": [],
+  "fallback": {
+    "used": true,
+    "primary_failed_stage": "none",
+    "fallback_used": "camelot",
+    "reasons": [
+      "table_expectation_mismatch"
+    ],
+    "camelot_used": true,
+    "ocr_used": false,
+    "stdout_logged": true
+  },
+  "scan_like_page_ratio": 0.0,
+  "low_text_page_ratio": 0.0,
+  "runtime_seconds": 3.628,
+  "tool_versions": {
+    "pymupdf": "1.26.7",
+    "pdfplumber": "0.11.9",
+    "camelot-py": "1.0.9",
+    "pytesseract": "0.3.13"
+  },
+  "extraction_audit": {
+    "ok": true,
+    "issues": [],
+    "issue_details": {},
+    "metrics": {
+      "chars": 51854,
+      "pages": 29,
+      "table_reference_count": 28,
+      "figure_reference_count": 50,
+      "equation_reference_count": 3,
+      "equation_like_line_count": 127,
+      "garbled_math_token_count": 0,
+      "extracted_table_count": 2,
+      "extracted_figure_count": 21,
+      "low_text_page_ratio": 0.0,
+      "scan_like_page_ratio": 0.0
+    }
+  },
+  "quality_checks": [
+    {
+      "check": "output_folder_exists",
+      "status": "pass",
+      "detail": "/Volumes/T9/pdf_extractor/tmp_confidence_full2/simulation-of-arbitrage-free-implied-volatility-surfaces"
+    },
+    {
+      "check": "paper_md_exists",
+      "status": "pass",
+      "detail": "/Volumes/T9/pdf_extractor/tmp_confidence_full2/simulation-of-arbitrage-free-implied-volatility-surfaces/paper.md"
+    },
+    {
+      "check": "manifest_exists",
+      "status": "pass",
+      "detail": "/Volumes/T9/pdf_extractor/tmp_confidence_full2/simulation-of-arbitrage-free-implied-volatility-surfaces/manifest.json"
+    },
+    {
+      "check": "text_threshold",
+      "status": "pass",
+      "detail": "chars=51854, scan_like=False"
+    },
+    {
+      "check": "figure_count_match",
+      "status": "pass",
+      "detail": "markdown=21, manifest=21"
+    },
+    {
+      "check": "table_count_match",
+      "status": "pass",
+      "detail": "markdown=2, manifest=2"
+    },
+    {
+      "check": "figure_assets_exist",
+      "status": "pass",
+      "detail": "all figure assets exist"
+    },
+    {
+      "check": "fallback_stdout_manifest_alignment",
+      "status": "pass",
+      "detail": "fallback used and stdout logged"
+    }
+  ],
+  "confidence": {
+    "score": 0.89,
+    "label": "high",
+    "base": 0.95,
+    "penalties": [
+      {
+        "reason": "fallback_used",
+        "weight": 0.08
+      }
+    ],
+    "bonuses": [
+      {
+        "reason": "audit_clean",
+        "weight": 0.02
+      }
+    ]
+  }
+}

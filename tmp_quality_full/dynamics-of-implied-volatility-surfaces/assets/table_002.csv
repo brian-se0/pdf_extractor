@@ -1,0 +1,22 @@
+,around 3 months: they are both of the same magnitude showing
+Figure 9. Time evolution of the projection x1(t) of SP500 implied,
+,that mean reversion of implied volatility is neither ‘slow’ nor
+volatilities on the ﬁrst principal component.,
+,‘fast’ but happens at the time scale of the option maturity.
+,"Movements along this eigenmode, which account for"
+direction of this eigenmode results in a global increase of all the,"around 80% of the daily variance, have a strong negative"
+implied volatilities: it may therefore be interpreted as a ‘level’,correlation with the underlying index returns. This observation
+factor. Figure 9 shows the projection x1(t) of the surface on this,is consistent with the so-called leverage effect: the overall
+eigenmode: it is observed to have a mean-reverting behaviour,negative correlation of implied volatility and asset returns.
+with a typical mean-reversion time of around a month.,"Note also that although the dependence in τ is weak, it is not"
+Figure 10 shows the autocorrelation function of the principal,"zero, and multiplying the surface by a constant can amplify this"
+the autocorrelation coefﬁcients are component process x1(t):,"dependence. Since the variance is large along this direction,"
+"signiﬁcantly positive up to a month, showing persistence",large movements along this direction can induce term structure
+in the values of the principal component process. As the,ﬂuctuations.
+"partial autocorrelation coefﬁcients show, this persistence can","The second eigenmode, in contrast, changes sign at the"
+be conveniently represented by a low-order autoregressive,money: the components are positive for m > 1 and negative
+process: an AR(1)/Ornstein–Uhlenbeck process already,for m < 1 (ﬁgure 11). A positive shock along this direction
+captures most of the persistence. Estimating an AR(1) process,increases the volatilities of out of the money calls while
+on the series gives an autoregression constant of 0.965 which,decreasing those of out of the money puts. By biasing the
+gives a mean reversion time of 28 days. This time scale should,"implied volatilities towards high strikes, positive movements"
+be compared with the maturity of liquid options which is,along this direction increase the skewness of the risk neutral

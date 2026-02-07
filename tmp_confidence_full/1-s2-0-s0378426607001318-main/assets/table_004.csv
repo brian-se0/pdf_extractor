@@ -1,0 +1,35 @@
+Maturity,,Strike,,,,,,
+,,80,,,,,,100
+1 month,,–,,,,,,30
+3 months,,35,,,,,,–
+price function but small enough to allow the call price function to be below the ask quotes,,,,,,,,
+at maturity greater than or equal,to Ti.,,,,,,,
+Consider:,,,,,,,,
+(,,,,,,,,)
+Ci1;ASK (cid:4) Ci2;ASK,,,,,,,,
+j1 j2,,,,,,,,
+(cid:6)(cid:6)(cid:6)(cid:6)(cid:6) Slopes1 (cid:3),1 6 i1 6 i2 6 m; 0 6 j1,,,,6 ni1 ; 0 6 j2,6 ni2s:t:K i1,,> K i2 ;
+,,,,,,,j1,j2
+j1 (cid:4) K i2,,,,,,,,
+,,,,,,,,ð12Þ
+(,,,,,,,,)
+Ci1;BID (cid:4) Ci2;ASK,,,,,,,,
+j1 j2,,,,,,,,
+(cid:6)(cid:6)(cid:6)(cid:6)(cid:6) Slopes2 (cid:3),1 6 i1 6 i2 6 m; 0 6 j1,,,6 ni1 ; 0 6 j2,,6 ni2 s:t:K i1,,> K i2
+,,,,,,,j1,j2
+j1 (cid:4) K i2,,,,,,,,
+,,,,,,,,ð13Þ
+and,,,,,,,,
+(cid:7),[,[,\,,(cid:8),,,
+MaxSlope (cid:3) max ðSlopes1,Slopes2,f(cid:4)1gÞ,,R(cid:7),:,,,
+,,,,(cid:4),,,,
+"then If Ci;ASK ¼ 0,",,,,,,,,
+ni,,,,,,,,
+K i,,,,,,,,
+with (cid:2)i > 0 niþ1 (cid:3) K i ni þ (cid:2)i,,,,,,,,ð14Þ
+else,,,,,,,,
+(cid:7) n,,,,,,o,(cid:8),
+K i K i1,=ðaiMaxSlopeÞji 6 i1; 0 6 j1,,,,6 ni1; Ci1;ASK,> 0,;,
+niþ1 (cid:3) min j1 (cid:4) Ci1;ASK,,,,,j1,,,ð15Þ
+"with ai 2 (0, 1).",,,,,,,,
+"""i 2 s1, mb, ""j 2 s0, nib,",,,,,,,,

@@ -1,0 +1,20 @@
+FIG. 2. Nadaraya–Watson estimate of the log-IV-returns for maturity 1M (left ﬁgure) and 3M (right
+ﬁgure). The bold line is the sample mean of the corresponding group.
+We can observe (see Figure 1) that the factor functions for both groups are
+"similar. Thus, in the next step we use the bootstrap test for testing the equality"
+of the factor functions. We use 2000 bootstrap replications. The test of equal-
+ity of the eigenfunctions was rejected for the ﬁrst eigenfunction for the analyzed
+time period (January 2004–June 2004) at a signiﬁcance level α = 0.05 (P-value
+0.01). We may conclude that the (ﬁrst) factor functions are not identical in the
+"factor model for both maturity groups. However, from a practical point of view,"
+we are more interested in checking the appropriateness of the entire models for
+a ﬁxed number of factors: L = 2 or L = 3 in (16) and (17). This requirement
+"translates into the testing of the equality of eigenspaces. Thus, in the next step"
+we use the same setup (2000 bootstrap replications) to test the hypotheses that
+and the ﬁrst two and ﬁrst three eigenfunctions span the same eigenspaces E 1M
+L
+. None of the hypotheses for L = 2 and L = 3 is rejected at signiﬁcance E 3M
+L
+"level α = 0.05 (P-value is 0.61 for L = 2 and 0.09 for L = 3). Summarizing,"
+even in the functional sense we have no signiﬁcant reason to reject the hypothe-
+"sis of common eigenspaces for these two maturity groups. Using this hypothesis,"

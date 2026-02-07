@@ -1,0 +1,28 @@
+Heston-SLV model Simulation
+θ κ σ ρ L (cid:19)t N rt qt
+Parameter S0 ν0
+"Value 0 0 100 0.0083 0.0085 8.3 0.32 −0.42 10,000 0.0001 46"
+"a local volatility component, the so-called leverage function L. Here, the subscript t of L"
+indicates that calibration of L is performed from derivative prices observed at t. The cal-
+"ibration typically involves an initial optimization of the fit over the Heston parameters,"
+followed by a calibration of the leverage function using Markovian projections (see Piter-
+"barg 2006 for a review of early approaches and the references in Bain, Mariapragassam,"
+and Reisinger (2021) for more recent contributions).
+We obtain the parameters and the leverage function used for generating synthetic input
+data in our tests by calibrating a Heston-SLV model to Bloomberg OTC USDBRL option
+"price data on 28th October 2008, using the QuantLib library (Quantlib 2021). The Heston"
+"parameters are listed in Table 1, and we plot the leverage function L in Figure 7."
+"We simulate discrete time series data for S, ν and call options with N fixed values of"
+"moneyness and maturity, over a time period of (L + 1)(cid:19)t (see Table 1 for the values used)."
+"These values are chosen to broadly emulate the observation, at moderate frequency (of"
+"the order of every 10 minutes), of a single year’s prices for the underlying asset and liquid"
+"European options book. Here, a single path of (S, ν) is sampled by an Euler–Maruyama"
+∗
+"approximation to (30) on [0, T ] ,7 and, for each t, option values at(S t, νt) are produced"
+"using the calibrated Heston parameters and the initial portion, i.e., Lt(u, ·) = L0(u − t, ·),"
+"u ∈ (t, T ∗).8"
+"This step is only required to generate the simulated input data, but not when real mar-"
+ket data are used. The SDE (30) is formulated in the risk-neutral measure used for pricing
+"options for each t, started at(S t, νt) along the chosen trajectory. We also use (30) for gen-"
+"erating the (St, νt) trajectory on [0, T]. Here, any drift could be used, and we choose 0 for"
+"simplicity, but note that this does not imply simulation under the risk-neutral measure.9"

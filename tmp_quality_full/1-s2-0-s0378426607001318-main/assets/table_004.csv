@@ -1,0 +1,25 @@
+Maturity Strike
+80 100 120
+1 month 21 – –
+3 months – – 1
+6 months – 12 –
+K i1
+". It is also the one of a vertical spread when i1 = i2. Likewise, Deﬁnition 2.2 is the j1 ¼ K i2"
+one of a butterﬂy spread when i = i1 = i2.
+Finally the example of Table 3 shows why the strike corresponding to the nearest matu-
+rity is always between the two other strikes in the deﬁnition of the calendar butterﬂy
+"spread. Indeed, in this case, no incompatibility can be argued."
+3. Necessary conditions for the absence of arbitrage
+"In this section, we describe necessary conditions for the absence of arbitrage such as the"
+"non-negativity of calendar vertical spreads and calendar butterﬂy spreads, which were"
+introduced in the previous section. We also discuss brieﬂy why these conditions are not
+theoretically suﬃcient for the absence of arbitrage.
+3.1. Assumptions
+Let us assume that:
+"• At any time, one can take short or long positions in the stock (resp. default free bond),"
+"at the current stock (resp. bond) price, without any transaction cost or limit in the"
+quantity;
+"the current ask (resp. • One can take long (resp. short) positions in the call options, at"
+"bid) price, without any transaction cost or limit in the quantity;"
+"• Finally, the options are cash settled: one, who holds a call, receives in cash the diﬀerence"
+"between the stock price and the strike, at maturity, if this diﬀerence is positive. (Note"

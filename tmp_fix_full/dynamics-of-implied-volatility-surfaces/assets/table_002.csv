@@ -1,0 +1,91 @@
+Q U A N T I T A T I V E F I N A N C E,Dynamics of implied volatility surfaces
+,density. Note also that this mode exhibits a systematic
+,"slope with respect to maturity, which accounts for the term"
+,(ﬁgure 6). Figure 12 shows the structure observed above5
+,evolution of the projection of the surface on this eigenmode.
+(cid:1)(cid:2)(cid:1)(cid:5),"Again, it exhibits a mean-reverting behaviour but with more"
+(cid:1)(cid:2)(cid:1)(cid:11),"intermittency, showing jumps and spikes. Inspection of the"
+(cid:1)(cid:2)(cid:1)(cid:9),"partial autocorrelation function, shown in ﬁgure 13, shows that"
+(cid:1) (cid:4)(cid:2)(cid:3),the correlation structure can be well approximated by an AR(1)
+(cid:22) ((cid:1)(cid:2)(cid:1)(cid:9) (cid:17),process. Estimation of an AR(1) model gives an autoregression
+(cid:13),
+(cid:21) (cid:4)(cid:2)(cid:1),
+(cid:20),
+(cid:17) ((cid:1)(cid:2)(cid:1)(cid:11),coefﬁcient of 0.924 which corresponds to a mean reversion
+(cid:19),
+(cid:14),
+(cid:16) (cid:1)(cid:2)(cid:3) (cid:18) ((cid:1)(cid:2)(cid:1)(cid:5),timescale of 12.6 days.
+(cid:17) (cid:16),
+(cid:15),
+(cid:1)(cid:2)(cid:3) (cid:14) (cid:1)(cid:2)(cid:5),"In contrast to what was observed for the ﬁrst eigenmode,"
+(cid:1)(cid:2)(cid:6) (cid:13) (cid:1)(cid:2)(cid:7),
+(cid:1)(cid:2)(cid:8),
+(cid:1) (cid:4)(cid:2)(cid:1) (cid:4)(cid:2)(cid:4) (cid:12) (cid:4)(cid:2)(cid:9),
+(cid:4)(cid:2)(cid:10) (cid:4)(cid:2)(cid:11),
+(cid:4)(cid:2)(cid:3),movements along this eigenmode are only weakly correlated
+"!(cid:18)""(cid:15)(cid:22)""(cid:15)(cid:30)(cid:30)",
+,with the underlying returns. This suggests that the leverage
+,effect is not a general feature of implied volatility movements
+Figure 11. Second eigenmode of daily implied volatility variations,
+,but is related to movements in the general level of implied
+for SP500 index options.,
+,"volatilities, while relative movements of implied volatilities"
+,can be decorrelated with respect to the underlying. For a ﬁxed
+"(cid:9)""(cid:29)(cid:16)(cid:26)(cid:21)(cid:13)""(cid:31)(cid:13)(cid:26)(cid:19)(cid:28)(cid:16)(cid:31)(cid:18)(cid:14)(cid:26)(cid:18)""(cid:15)""(cid:17)(cid:16)(cid:26)(cid:21)(cid:18)(cid:31)(cid:15)(cid:30)(cid:30)2(cid:16)#%(cid:3)(cid:1)(cid:1)(cid:16)(cid:13)(cid:14)(cid:26)(cid:28)(cid:13)(cid:15)(cid:29)(cid:16)(cid:24)(cid:18)(cid:28)(cid:19)(cid:17)(cid:13)(cid:28)(cid:13)(cid:15)(cid:30)2(cid:16)(cid:4)(cid:8)(cid:8)(cid:8)((cid:9)(cid:1)(cid:1)(cid:1)(cid:2)","maturity, the cross sections of this mode correspond to the"
+,shape found by Skiadopoulos et al [39] on another data set
+(cid:4)(cid:2)(cid:1),
+,(SP500 futures options traded on the CME).
+(cid:1)(cid:2)(cid:3),
+,"The third eigenmode, shown in ﬁgure 14, is a ‘butterﬂy’"
+(cid:1),mode which is interpreted as a change in the convexity of the
+,"surface, accompanied by a downward sloping term structure"
+((cid:1)(cid:2)(cid:3),
+,which biases the magnitude of the ﬂuctuations towards short
+((cid:4)(cid:2)(cid:1),
+,"term implied volatilities. In terms of risk, movements along"
+((cid:4)(cid:2)(cid:3),
+,this direction contribute to the ‘fattening’ of both the tails of
+((cid:9)(cid:2)(cid:1),the risk neutral density. This component only contributes to
+,0.8% of the overall variance.
+((cid:9)(cid:2)(cid:3),
+,Table 1 gives summary statistics for the time series of the
+((cid:10)(cid:2)(cid:1),
+,ﬁrst three principal component processes. Each of them is
+((cid:10)(cid:2)(cid:3),
+,highly autocorrelated and mean-reverting with a mean rever-
+((cid:11)(cid:2)(cid:1),sion time close to a month: ﬁgures 9 and 12 illustrate the sam-
+(cid:1) (cid:3)(cid:1) (cid:4)(cid:1)(cid:1) (cid:4)(cid:3)(cid:1) (cid:9)(cid:1)(cid:1) (cid:9)(cid:3)(cid:1),ple paths. Inspection of the partial autocorrelation functions
+)(cid:19)(cid:22)(cid:30),show that the autocorrelation structures (shown in ﬁgures 10
+,and 13) are well approximated by AR(1)/Ornstein–Uhlenbeck
+"%(cid:21)(cid:18)1(cid:15)(cid:31)(cid:17)(cid:13)(cid:18)""(cid:16)(cid:18)(cid:27)(cid:16)(cid:29)(cid:19)(cid:13)(cid:28)(cid:22)(cid:16)(cid:24)(cid:19)(cid:21)(cid:13)(cid:19)(cid:17)(cid:13)(cid:18)""(cid:16)(cid:18)""(cid:16)(cid:9)""(cid:29)(cid:16)(cid:15)(cid:13)(cid:25)(cid:15)""(cid:14)(cid:18)(cid:29)(cid:15)(cid:16)+#%(cid:3)(cid:1)(cid:1),",
+,processes. Although the unconditional distributions are not
+(cid:1)(cid:2)(cid:3),
+,"Gaussian (all series have excess kurtosis and some skewness),"
+(cid:1)(cid:2)(cid:11),
+,the deviation from normality is mild. Similar results were
+(cid:1)(cid:2)(cid:10),"found for DAX options in [24]. Also, none of these factors is"
+,perfectly correlated with the underlying returns. The largest
+(cid:1)(cid:2)(cid:9),
+,(negative) correlation value is between the underlying and the
+(cid:1)(cid:2)(cid:4),"ﬁrst factor, corresponding to a value of −66%, but still remains"
+,"signiﬁcantly smaller than 1. Movements in other directions,"
+(cid:1),
+,"which reﬂect changes in the shape of the surface, seem to have"
+((cid:1)(cid:2)(cid:4),
+,little correlation with the underlying asset.
+((cid:1)(cid:2)(cid:9),
+((cid:1)(cid:2)(cid:10),5. Empirical results for FTSE options
+((cid:1)(cid:2)(cid:11),
+,In this section we present the results obtained when applying
+(cid:1) (cid:9)(cid:1) (cid:11)(cid:1) (cid:5)(cid:1) (cid:7)(cid:1) (cid:4)(cid:1)(cid:1) (cid:4)(cid:9)(cid:1) (cid:4)(cid:11)(cid:1) (cid:4)(cid:5)(cid:1) (cid:4)(cid:7)(cid:1),
+,the methods described in section 3 to a database of FTSE 100
+)(cid:19)(cid:22)(cid:30),
+,index options. The options under study are European call
+,and put options on the FTSE 100 index (ESX options). The
+Figure 12. Top: time evolution of the projection x2(t) of SP500,
+,database contains more than 2 years of daily transaction prices
+implied volatilities on the second principal component. Bottom:,
+,and quoted Black–Scholes implied volatilities for all quoted
+daily increments (cid:22)x2(t). Time unit: days.,
+,5 Actually ﬁgure 11 shows a downward sloping term structure but recall that
+,eigenmodes are deﬁned up to a sign and normalization so the sign is irrelevant.

@@ -1,0 +1,39 @@
+,,"Predictability of Volatility Skew, Portfolio Forming Approach",,,,,,,
+,"In Table 3, data are obtained from CRSP, Compustat (for stocks), and OptionMetrics (for options). Our sample period is",,,,,,,,
+,1996–2005. Variable SKEW is the difference between the implied volatilities of out-of-the-money (OTM) put options and,,,,,,,,
+,at-the-money (ATM) call options. Variable EXRET is the weekly excess return over the risk-free rate. Variable ALPHA is the,,,,,,,,
+,weekly risk-adjusted return using the Fama-French (1996) 3-factor model. Variable SIZE is the ﬁrm market capitalization in,,,,,,,,
+,$ billions. Variable BM is the book-to-market ratio. Variable VOLSTOCK is the underlying return volatility calculated using the,,,,,,,,
+,"previous month’s daily stock returns. Variable PVOL is the volatility premium, which is the difference between the implied",,,,,,,,
+,volatility for ATM call options and VOLSTOCK. Variable VOLUME is the total volume on all option contracts. Variable OPEN,,,,,,,,
+,is the total open interest on all option contracts. Both panels report summary statistics for quintile portfolios sorted on the,,,,,,,,
+,"previous week’s SKEW. For each week, we form quintile portfolios based on the average skew from the previous week.",,,,,,,,
+,We then skip a day and hold the quintile portfolios for another week.,,,,,"In Panel A,",the implied volatilities are the implied,,
+,volatilities on ATM calls with moneyness closest,,,to 1 and OTM puts with moneyness closest,,,,"to 0.95. On average, each",
+,quintile portfolio contains 168 ﬁrms.,,"In Panel B,",the implied volatilities are volume weighted for ATM calls and OTM puts.,,,,,
+,"On average, each quintile portfolio contains 68 ﬁrms. The t-statistics for mean returns and alphas are calculated over 520",,,,,,,,
+,weeks. The ﬁrm characteristics are computed by averaging over the ﬁrms within each quintile portfolio and then over 520,,,,,,,,
+,"weeks. *, **, and *** indicate signiﬁcance at 10%, 5%, and 1% levels, respectively.",,,,,,,,
+,EXRET,ALPHA,SKEW,SIZE,BM,VOLSTOCK,PVOL,VOLUME,OPEN
+,Panel A. Quintile Portfolios Using Moneyness-Based SKEW,,,,,,,,
+Low,0.24%,0.10%,–0.34%,7.82,0.394,0.504,3.03%,"1,042","10,718"
+2,0.15%,0.03%,2.87%,13.81,0.377,0.454,1.11%,"1,234","13,890"
+3,0.16%,0.03%,4.79%,14.70,0.373,0.459,0.51%,"1,258","14,299"
+4,0.11%,–0.02%,7.55%,10.46,0.398,0.474,0.18%,962,"10,865"
+High,0.08%,–0.11%,17.14%,4.29,0.468,0.466,–0.80%,469,"5,618"
+Low – High,0.16%,0.21%,,,,,,,
+t-stat.,2.19**,2.93***,,,,,,,
+Panel B. Quintile Portfolios Using Volume-Based SKEW,,,,,,,,,
+Low,0.26%,0.14%,0.48%,13.56,0.342,0.543,1.98%,"1,994","18,222"
+2,0.21%,0.08%,3.45%,22.25,0.316,0.483,0.21%,"2,244","22,987"
+3,0.14%,0.04%,5.06%,25.57,0.301,0.487,–0.56%,"2,525","26,839"
+4,0.15%,0.04%,6.96%,23.95,0.302,0.506,–0.96%,"2,535","26,918"
+High,0.07%,–0.05%,12.54%,13.26,0.348,0.558,–1.27%,"2,024","21,859"
+Low – High,0.19%,0.19%,,,,,,,
+t-stat.,2.05**,2.07**,,,,,,,
+,displays a slightly downward trend from quintile 1 to quintile 5. The next column,,,,,,,,
+,"reports PVOL. Interestingly, as SKEW increases from Portfolio 1 to Portfolio 5,",,,,,,,,
+,"PVOL decreases. Hence,",,,"for ﬁrms with low volatility skews,",,,,the options mar-,
+,"ket prices the options higher than historical volatilities mandate, while high skew",,,,,,,,
+,ﬁrms’ options are less expensive than historical volatilities imply.,,,,,,,It,is possible
+,"that SKEW’s predictive power is related to the magnitude of PVOL, yet our ear-",,,,,,,,

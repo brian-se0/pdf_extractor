@@ -5,7 +5,7 @@ from pathlib import Path
 from .deps import MissingDependencyError, require_module
 from .figures import extract_figures, page_text_lookup_from_pages
 from .metadata import extract_metadata
-from .tables import detect_table_marker_pages, extract_tables_pdfplumber
+from .tables import count_table_references, detect_table_marker_pages, extract_tables_pdfplumber
 from .text import extract_text
 from .types import ExtractionPassResult, PipelineConfig, TextExtraction
 
@@ -45,6 +45,7 @@ def run_extraction_pass(
 
     page_lookup = page_text_lookup_from_pages(result.text.pages)
     result.table_marker_pages = detect_table_marker_pages(result.text.pages)
+    result.table_reference_count = count_table_references(result.text.pages)
 
     try:
         tables, table_warnings, malformed_pages = extract_tables_pdfplumber(pdf_path, page_lookup)

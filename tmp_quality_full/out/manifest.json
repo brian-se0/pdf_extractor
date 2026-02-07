@@ -1,0 +1,112 @@
+{
+  "paper_id": "out",
+  "source_file": "out.pdf",
+  "source_path": "/Volumes/T9/lit_review/out.pdf",
+  "status": "success",
+  "page_count": 11,
+  "counts": {
+    "words": 132,
+    "tables": 0,
+    "figures": 22,
+    "chars": 1142
+  },
+  "metadata": {
+    "title": null,
+    "authors": [],
+    "year": null,
+    "doi": null,
+    "raw_pdf_metadata": {
+      "format": "PDF 1.2",
+      "title": null,
+      "author": null,
+      "subject": null,
+      "keywords": null,
+      "creator": null,
+      "producer": "image2pdf.c",
+      "creationDate": "10/30/19 23:56",
+      "modDate": null,
+      "trapped": null,
+      "encryption": null
+    }
+  },
+  "warnings": [],
+  "errors": [],
+  "fallback": {
+    "used": false,
+    "primary_failed_stage": "none",
+    "fallback_used": "none",
+    "reasons": [],
+    "camelot_used": false,
+    "ocr_used": false,
+    "stdout_logged": false
+  },
+  "scan_like_page_ratio": 0.0,
+  "low_text_page_ratio": 0.0,
+  "runtime_seconds": 2.178,
+  "tool_versions": {
+    "pymupdf": "1.26.7",
+    "pdfplumber": "0.11.9",
+    "camelot-py": "1.0.9",
+    "pytesseract": "0.3.13"
+  },
+  "extraction_audit": {
+    "ok": true,
+    "issues": [],
+    "issue_details": {},
+    "metrics": {
+      "chars": 1142,
+      "pages": 11,
+      "table_reference_count": 0,
+      "figure_reference_count": 0,
+      "equation_reference_count": 0,
+      "equation_like_line_count": 0,
+      "garbled_math_token_count": 0,
+      "extracted_table_count": 0,
+      "extracted_figure_count": 22,
+      "low_text_page_ratio": 0.0,
+      "scan_like_page_ratio": 0.0
+    }
+  },
+  "quality_checks": [
+    {
+      "check": "output_folder_exists",
+      "status": "pass",
+      "detail": "/Volumes/T9/pdf_extractor/tmp_quality_full/out"
+    },
+    {
+      "check": "paper_md_exists",
+      "status": "pass",
+      "detail": "/Volumes/T9/pdf_extractor/tmp_quality_full/out/paper.md"
+    },
+    {
+      "check": "manifest_exists",
+      "status": "pass",
+      "detail": "/Volumes/T9/pdf_extractor/tmp_quality_full/out/manifest.json"
+    },
+    {
+      "check": "text_threshold",
+      "status": "pass",
+      "detail": "chars=1142, scan_like=False"
+    },
+    {
+      "check": "figure_count_match",
+      "status": "pass",
+      "detail": "markdown=22, manifest=22"
+    },
+    {
+      "check": "table_count_match",
+      "status": "pass",
+      "detail": "markdown=0, manifest=0"
+    },
+    {
+      "check": "figure_assets_exist",
+      "status": "pass",
+      "detail": "all figure assets exist"
+    },
+    {
+      "check": "fallback_stdout_manifest_alignment",
+      "status": "pass",
+      "detail": "fallback used and stdout logged"
+    }
+  ]
+}

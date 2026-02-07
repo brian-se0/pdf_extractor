@@ -1,0 +1,16 @@
+Implied volatility surfaces: a comprehensive analysis using…,151
+5 Findings,
+"In this section, we present the findings of our analysis. We begin by summarizing",
+"the cross-validation error statistics for different specifications, including one where",
+we do not evaluate extrapolation to the left and right most observations. To better,
+"understand the cross-validation errors, we record the maximum, standard deviation,",
+"95% quantiles, and the entire error distribution using boxplots. We disaggregate the",
+"results for different moneyness, maturity, and volume buckets.",
+,"To study the relationship between accuracy and trading volume, we introduce"
+volume buckets. We collect all single stock option volumes for each day and calcu-,
+late the 0.25 ( q0.25 ) and 0.75 ( q0.75 ) volume quantiles. For each day t and single firm,
+"i, we classify its daily volume into a low, medium, or high volume bucket, depend-",
+"ing on whether the actual volume is (i) below q0.25 , (ii) between q0.25 and q0.75 , or",
+(iii) larger than q0.75.,
+,We then present the results for S&P 500 options and compare them to Ulrich and
+Walther (2020). This is followed by an analysis of single stock options.,

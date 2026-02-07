@@ -8,6 +8,8 @@ __all__ = [
     "tables",
     "figures",
     "fallback",
+    "confidence",
+    "quality_eval",
     "render_markdown",
     "run_pipeline",
 ]

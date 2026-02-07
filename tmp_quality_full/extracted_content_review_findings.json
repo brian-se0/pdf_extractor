@@ -1,0 +1,317 @@
+{
+  "findings": [
+    {
+      "type": "null_bytes_in_markdown",
+      "source_file": "1210.7111v4.pdf",
+      "paper_path": "/Volumes/T9/lit_review/extracted/1210-7111v4/paper.md",
+      "count": 19
+    },
+    {
+      "type": "null_bytes_in_markdown",
+      "source_file": "1906.05065v3.pdf",
+      "paper_path": "/Volumes/T9/lit_review/extracted/1906-05065v3/paper.md",
+      "count": 5
+    },
+    {
+      "type": "null_bytes_in_markdown",
+      "source_file": "2108.04941v3.pdf",
+      "paper_path": "/Volumes/T9/lit_review/extracted/2108-04941v3/paper.md",
+      "count": 17
+    },
+    {
+      "type": "null_bytes_in_markdown",
+      "source_file": "2108.08481v6.pdf",
+      "paper_path": "/Volumes/T9/lit_review/extracted/2108-08481v6/paper.md",
+      "count": 48
+    },
+    {
+      "type": "null_bytes_in_markdown",
+      "source_file": "Breeden-PricesStateContingentClaims-1978.pdf",
+      "paper_path": "/Volumes/T9/lit_review/extracted/breeden-pricesstatecontingentclaims-1978/paper.md",
+      "count": 800
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "07-AOS516.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/07-aos516",
+      "orphan_fig_count": 0,
+      "orphan_table_count": 4,
+      "manifest_figures": 2,
+      "manifest_tables": 4
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "1-s2.0-0022053179900437-main.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/1-s2-0-0022053179900437-main",
+      "orphan_fig_count": 15,
+      "orphan_table_count": 0,
+      "manifest_figures": 449,
+      "manifest_tables": 0
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "1-s2.0-0304414981900260-main.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/1-s2-0-0304414981900260-main",
+      "orphan_fig_count": 2112,
+      "orphan_table_count": 0,
+      "manifest_figures": 0,
+      "manifest_tables": 0
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "1-s2.0-S030440761000076X-main.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/1-s2-0-s030440761000076x-main",
+      "orphan_fig_count": 0,
+      "orphan_table_count": 3,
+      "manifest_figures": 2,
+      "manifest_tables": 3
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "1-s2.0-S0378426607001318-main.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/1-s2-0-s0378426607001318-main",
+      "orphan_fig_count": 0,
+      "orphan_table_count": 5,
+      "manifest_figures": 5,
+      "manifest_tables": 5
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "160101.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/160101",
+      "orphan_fig_count": 0,
+      "orphan_table_count": 10,
+      "manifest_figures": 0,
+      "manifest_tables": 10
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "1906.05065v3.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/1906-05065v3",
+      "orphan_fig_count": 0,
+      "orphan_table_count": 149,
+      "manifest_figures": 17,
+      "manifest_tables": 51
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "2002.00085v1.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/2002-00085v1",
+      "orphan_fig_count": 16,
+      "orphan_table_count": 6,
+      "manifest_figures": 27,
+      "manifest_tables": 6
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "2102.03945v1.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/2102-03945v1",
+      "orphan_fig_count": 0,
+      "orphan_table_count": 3,
+      "manifest_figures": 2,
+      "manifest_tables": 3
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "2108.04941v3.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/2108-04941v3",
+      "orphan_fig_count": 0,
+      "orphan_table_count": 11,
+      "manifest_figures": 8,
+      "manifest_tables": 11
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "2108.08481v6.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/2108-08481v6",
+      "orphan_fig_count": 0,
+      "orphan_table_count": 2,
+      "manifest_figures": 25,
+      "manifest_tables": 2
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "A Test for Superior Predictive Ability.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/a-test-for-superior-predictive-ability",
+      "orphan_fig_count": 0,
+      "orphan_table_count": 12,
+      "manifest_figures": 20,
+      "manifest_tables": 12
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "Arbitrage-Free Neural-SDE Market Models.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/arbitrage-free-neural-sde-market-models",
+      "orphan_fig_count": 12,
+      "orphan_table_count": 3,
+      "manifest_figures": 51,
+      "manifest_tables": 3
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "Breeden-PricesStateContingentClaims-1978.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/breeden-pricesstatecontingentclaims-1978",
+      "orphan_fig_count": 3,
+      "orphan_table_count": 5,
+      "manifest_figures": 32,
+      "manifest_tables": 5
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "Dynamics of implied volatility surfaces.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/dynamics-of-implied-volatility-surfaces",
+      "orphan_fig_count": 0,
+      "orphan_table_count": 7,
+      "manifest_figures": 24,
+      "manifest_tables": 7
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "Functional Data Analysis, Second Edition -- Jim Ramsay, James Ramsay, B_ W_ Silverman, Henry Overton -- Springer series in statistics, 2nd ed, New -- 9780387227511 -- 2fed94b53610c74268fe3b4230577388 -- Anna\u2019s Archive.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/functional-data-analysis-second-edition-jim-ramsay-james-ramsay-b-w-silverman-henry-overton-springer-series-in-statistics-2nd-ed-new-9780387227511-2fed94b53610c74268fe3b4230577388-annas-archive",
+      "orphan_fig_count": 1,
+      "orphan_table_count": 3,
+      "manifest_figures": 140,
+      "manifest_tables": 3
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "NIPS-2015-learning-structured-output-representation-using-deep-conditional-generative-models-Paper.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/nips-2015-learning-structured-output-representation-using-deep-conditional-generative-models-paper",
+      "orphan_fig_count": 0,
+      "orphan_table_count": 11,
+      "manifest_figures": 12,
+      "manifest_tables": 6
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "S0022109010000220.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/s0022109010000220",
+      "orphan_fig_count": 0,
+      "orphan_table_count": 11,
+      "manifest_figures": 1,
+      "manifest_tables": 11
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "s11147-023-09195-5.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/s11147-023-09195-5",
+      "orphan_fig_count": 0,
+      "orphan_table_count": 11,
+      "manifest_figures": 11,
+      "manifest_tables": 11
+    },
+    {
+      "type": "orphan_assets",
+      "source_file": "Simulation of Arbitrage-Free Implied Volatility Surfaces.pdf",
+      "paper_dir": "/Volumes/T9/lit_review/extracted/simulation-of-arbitrage-free-implied-volatility-surfaces",
+      "orphan_fig_count": 0,
+      "orphan_table_count": 16,
+      "manifest_figures": 39,
+      "manifest_tables": 16
+    },
+    {
+      "type": "extreme_figure_density",
+      "source_file": "1-s2.0-0022053179900437-main.pdf",
+      "ratio": 16.04,
+      "figures": 449,
+      "pages": 28,
+      "paper_md": "/Volumes/T9/lit_review/extracted/1-s2-0-0022053179900437-main/paper.md"
+    },
+    {
+      "type": "watermark_dominated_text",
+      "source_file": "A Reality Check for Data Snooping.pdf",
+      "paper_md": "/Volumes/T9/lit_review/extracted/a-reality-check-for-data-snooping/paper.md"
+    },
+    {
+      "type": "watermark_dominated_text",
+      "source_file": "out.pdf",
+      "paper_md": "/Volumes/T9/lit_review/extracted/out/paper.md"
+    },
+    {
+      "type": "watermark_dominated_text",
+      "source_file": "Stochastic Models of Implied Volatility Surfaces.pdf",
+      "paper_md": "/Volumes/T9/lit_review/extracted/stochastic-models-of-implied-volatility-surfaces/paper.md"
+    },
+    {
+      "type": "quality_check_detail_incorrect",
+      "source_file": "1-s2.0-0022053179900437-main.pdf",
+      "manifest_path": "/Volumes/T9/lit_review/extracted/1-s2-0-0022053179900437-main/manifest.json"
+    },
+    {
+      "type": "quality_check_detail_incorrect",
+      "source_file": "1-s2.0-0304414981900260-main.pdf",
+      "manifest_path": "/Volumes/T9/lit_review/extracted/1-s2-0-0304414981900260-main/manifest.json"
+    },
+    {
+      "type": "quality_check_detail_incorrect",
+      "source_file": "1-s2.0-S030440761000076X-main.pdf",
+      "manifest_path": "/Volumes/T9/lit_review/extracted/1-s2-0-s030440761000076x-main/manifest.json"
+    },
+    {
+      "type": "quality_check_detail_incorrect",
+      "source_file": "1210.7111v4.pdf",
+      "manifest_path": "/Volumes/T9/lit_review/extracted/1210-7111v4/manifest.json"
+    },
+    {
+      "type": "quality_check_detail_incorrect",
+      "source_file": "1906.05065v3.pdf",
+      "manifest_path": "/Volumes/T9/lit_review/extracted/1906-05065v3/manifest.json"
+    },
+    {
+      "type": "quality_check_detail_incorrect",
+      "source_file": "2002.00085v1.pdf",
+      "manifest_path": "/Volumes/T9/lit_review/extracted/2002-00085v1/manifest.json"
+    },
+    {
+      "type": "quality_check_detail_incorrect",
+      "source_file": "2102.03945v1.pdf",
+      "manifest_path": "/Volumes/T9/lit_review/extracted/2102-03945v1/manifest.json"
+    },
+    {
+      "type": "quality_check_detail_incorrect",
+      "source_file": "2108.08481v6.pdf",
+      "manifest_path": "/Volumes/T9/lit_review/extracted/2108-08481v6/manifest.json"
+    },
+    {
+      "type": "quality_check_detail_incorrect",
+      "source_file": "A Reality Check for Data Snooping.pdf",
+      "manifest_path": "/Volumes/T9/lit_review/extracted/a-reality-check-for-data-snooping/manifest.json"
+    },
+    {
+      "type": "quality_check_detail_incorrect",
+      "source_file": "Arbitrage-free SVI volatility surfaces.pdf",
+      "manifest_path": "/Volumes/T9/lit_review/extracted/arbitrage-free-svi-volatility-surfaces/manifest.json"
+    },
+    {
+      "type": "quality_check_detail_incorrect",
+      "source_file": "Deep hedging.pdf",
+      "manifest_path": "/Volumes/T9/lit_review/extracted/deep-hedging/manifest.json"
+    },
+    {
+      "type": "quality_check_detail_incorrect",
+      "source_file": "Functional Data Analysis, Second Edition -- Jim Ramsay, James Ramsay, B_ W_ Silverman, Henry Overton -- Springer series in statistics, 2nd ed, New -- 9780387227511 -- 2fed94b53610c74268fe3b4230577388 -- Anna\u2019s Archive.pdf",
+      "manifest_path": "/Volumes/T9/lit_review/extracted/functional-data-analysis-second-edition-jim-ramsay-james-ramsay-b-w-silverman-henry-overton-springer-series-in-statistics-2nd-ed-new-9780387227511-2fed94b53610c74268fe3b4230577388-annas-archive/manifest.json"
+    },
+    {
+      "type": "quality_check_detail_incorrect",
+      "source_file": "NIPS-2015-learning-structured-output-representation-using-deep-conditional-generative-models-Paper.pdf",
+      "manifest_path": "/Volumes/T9/lit_review/extracted/nips-2015-learning-structured-output-representation-using-deep-conditional-generative-models-paper/manifest.json"
+    },
+    {
+      "type": "quality_check_detail_incorrect",
+      "source_file": "out.pdf",
+      "manifest_path": "/Volumes/T9/lit_review/extracted/out/manifest.json"
+    },
+    {
+      "type": "quality_check_detail_incorrect",
+      "source_file": "s00780-005-0162-y.pdf",
+      "manifest_path": "/Volumes/T9/lit_review/extracted/s00780-005-0162-y/manifest.json"
+    },
+    {
+      "type": "quality_check_detail_incorrect",
+      "source_file": "Stochastic Models of Implied Volatility Surfaces.pdf",
+      "manifest_path": "/Volumes/T9/lit_review/extracted/stochastic-models-of-implied-volatility-surfaces/manifest.json"
+    }
+  ]
+}

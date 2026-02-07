@@ -1,0 +1,363 @@
+{
+  "rows": [
+    {
+      "source": "07-AOS516.pdf",
+      "manifest_figs": 2,
+      "referenced_figs": 2,
+      "asset_fig_files": 2,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "1-s2.0-0022053179900437-main.pdf",
+      "manifest_figs": 449,
+      "referenced_figs": 449,
+      "asset_fig_files": 464,
+      "orphan_fig_assets": 15,
+      "missing_referenced_assets": 0,
+      "top_orphans": [
+        "fig_450.png",
+        "fig_451.png",
+        "fig_452.png",
+        "fig_453.png",
+        "fig_454.png"
+      ]
+    },
+    {
+      "source": "1-s2.0-0304414981900260-main.pdf",
+      "manifest_figs": 0,
+      "referenced_figs": 0,
+      "asset_fig_files": 2112,
+      "orphan_fig_assets": 2112,
+      "missing_referenced_assets": 0,
+      "top_orphans": [
+        "fig_001.png",
+        "fig_002.png",
+        "fig_003.png",
+        "fig_004.png",
+        "fig_005.png"
+      ]
+    },
+    {
+      "source": "1-s2.0-S030440761000076X-main.pdf",
+      "manifest_figs": 2,
+      "referenced_figs": 2,
+      "asset_fig_files": 2,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "1-s2.0-S0378426607001318-main.pdf",
+      "manifest_figs": 5,
+      "referenced_figs": 5,
+      "asset_fig_files": 5,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "1210.7111v4.pdf",
+      "manifest_figs": 2,
+      "referenced_figs": 2,
+      "asset_fig_files": 2,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "160101.pdf",
+      "manifest_figs": 0,
+      "referenced_figs": 0,
+      "asset_fig_files": 0,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "1906.05065v3.pdf",
+      "manifest_figs": 17,
+      "referenced_figs": 17,
+      "asset_fig_files": 17,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "2002.00085v1.pdf",
+      "manifest_figs": 27,
+      "referenced_figs": 27,
+      "asset_fig_files": 43,
+      "orphan_fig_assets": 16,
+      "missing_referenced_assets": 0,
+      "top_orphans": [
+        "fig_003.png",
+        "fig_006.png",
+        "fig_007.png",
+        "fig_009.jpeg",
+        "fig_011.jpeg"
+      ]
+    },
+    {
+      "source": "2102.03945v1.pdf",
+      "manifest_figs": 2,
+      "referenced_figs": 2,
+      "asset_fig_files": 2,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "2108.04941v3.pdf",
+      "manifest_figs": 8,
+      "referenced_figs": 8,
+      "asset_fig_files": 8,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "2108.08481v6.pdf",
+      "manifest_figs": 25,
+      "referenced_figs": 25,
+      "asset_fig_files": 25,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "A Reality Check for Data Snooping.pdf",
+      "manifest_figs": 30,
+      "referenced_figs": 30,
+      "asset_fig_files": 30,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "A Test for Superior Predictive Ability.pdf",
+      "manifest_figs": 20,
+      "referenced_figs": 20,
+      "asset_fig_files": 20,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "Arbitrage-Free Neural-SDE Market Models.pdf",
+      "manifest_figs": 51,
+      "referenced_figs": 51,
+      "asset_fig_files": 63,
+      "orphan_fig_assets": 12,
+      "missing_referenced_assets": 0,
+      "top_orphans": [
+        "fig_039.jpeg",
+        "fig_052.png",
+        "fig_053.png",
+        "fig_054.png",
+        "fig_055.png"
+      ]
+    },
+    {
+      "source": "Arbitrage-free SVI volatility surfaces.pdf",
+      "manifest_figs": 19,
+      "referenced_figs": 19,
+      "asset_fig_files": 19,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "Breeden-PricesStateContingentClaims-1978.pdf",
+      "manifest_figs": 32,
+      "referenced_figs": 32,
+      "asset_fig_files": 35,
+      "orphan_fig_assets": 3,
+      "missing_referenced_assets": 0,
+      "top_orphans": [
+        "fig_001.png",
+        "fig_002.jpeg",
+        "fig_033.png"
+      ]
+    },
+    {
+      "source": "Deep hedging.pdf",
+      "manifest_figs": 22,
+      "referenced_figs": 22,
+      "asset_fig_files": 22,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "Dynamics of implied volatility surfaces.pdf",
+      "manifest_figs": 24,
+      "referenced_figs": 24,
+      "asset_fig_files": 24,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "Functional Data Analysis, Second Edition -- Jim Ramsay, James Ramsay, B_ W_ Silverman, Henry Overton -- Springer series in statistics, 2nd ed, New -- 9780387227511 -- 2fed94b53610c74268fe3b4230577388 -- Anna\u2019s Archive.pdf",
+      "manifest_figs": 140,
+      "referenced_figs": 140,
+      "asset_fig_files": 141,
+      "orphan_fig_assets": 1,
+      "missing_referenced_assets": 0,
+      "top_orphans": [
+        "fig_141.png"
+      ]
+    },
+    {
+      "source": "NIPS-2015-learning-structured-output-representation-using-deep-conditional-generative-models-Paper.pdf",
+      "manifest_figs": 12,
+      "referenced_figs": 12,
+      "asset_fig_files": 12,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "out.pdf",
+      "manifest_figs": 22,
+      "referenced_figs": 22,
+      "asset_fig_files": 22,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "S0022109010000220.pdf",
+      "manifest_figs": 1,
+      "referenced_figs": 1,
+      "asset_fig_files": 1,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "s00780-005-0162-y.pdf",
+      "manifest_figs": 1,
+      "referenced_figs": 1,
+      "asset_fig_files": 1,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "s11147-023-09195-5.pdf",
+      "manifest_figs": 11,
+      "referenced_figs": 11,
+      "asset_fig_files": 11,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "Simulation of Arbitrage-Free Implied Volatility Surfaces.pdf",
+      "manifest_figs": 39,
+      "referenced_figs": 39,
+      "asset_fig_files": 39,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    },
+    {
+      "source": "Stochastic Models of Implied Volatility Surfaces.pdf",
+      "manifest_figs": 17,
+      "referenced_figs": 17,
+      "asset_fig_files": 17,
+      "orphan_fig_assets": 0,
+      "missing_referenced_assets": 0,
+      "top_orphans": []
+    }
+  ],
+  "flagged": [
+    {
+      "source": "1-s2.0-0022053179900437-main.pdf",
+      "manifest_figs": 449,
+      "referenced_figs": 449,
+      "asset_fig_files": 464,
+      "orphan_fig_assets": 15,
+      "missing_referenced_assets": 0,
+      "top_orphans": [
+        "fig_450.png",
+        "fig_451.png",
+        "fig_452.png",
+        "fig_453.png",
+        "fig_454.png"
+      ]
+    },
+    {
+      "source": "1-s2.0-0304414981900260-main.pdf",
+      "manifest_figs": 0,
+      "referenced_figs": 0,
+      "asset_fig_files": 2112,
+      "orphan_fig_assets": 2112,
+      "missing_referenced_assets": 0,
+      "top_orphans": [
+        "fig_001.png",
+        "fig_002.png",
+        "fig_003.png",
+        "fig_004.png",
+        "fig_005.png"
+      ]
+    },
+    {
+      "source": "2002.00085v1.pdf",
+      "manifest_figs": 27,
+      "referenced_figs": 27,
+      "asset_fig_files": 43,
+      "orphan_fig_assets": 16,
+      "missing_referenced_assets": 0,
+      "top_orphans": [
+        "fig_003.png",
+        "fig_006.png",
+        "fig_007.png",
+        "fig_009.jpeg",
+        "fig_011.jpeg"
+      ]
+    },
+    {
+      "source": "Arbitrage-Free Neural-SDE Market Models.pdf",
+      "manifest_figs": 51,
+      "referenced_figs": 51,
+      "asset_fig_files": 63,
+      "orphan_fig_assets": 12,
+      "missing_referenced_assets": 0,
+      "top_orphans": [
+        "fig_039.jpeg",
+        "fig_052.png",
+        "fig_053.png",
+        "fig_054.png",
+        "fig_055.png"
+      ]
+    },
+    {
+      "source": "Breeden-PricesStateContingentClaims-1978.pdf",
+      "manifest_figs": 32,
+      "referenced_figs": 32,
+      "asset_fig_files": 35,
+      "orphan_fig_assets": 3,
+      "missing_referenced_assets": 0,
+      "top_orphans": [
+        "fig_001.png",
+        "fig_002.jpeg",
+        "fig_033.png"
+      ]
+    },
+    {
+      "source": "Functional Data Analysis, Second Edition -- Jim Ramsay, James Ramsay, B_ W_ Silverman, Henry Overton -- Springer series in statistics, 2nd ed, New -- 9780387227511 -- 2fed94b53610c74268fe3b4230577388 -- Anna\u2019s Archive.pdf",
+      "manifest_figs": 140,
+      "referenced_figs": 140,
+      "asset_fig_files": 141,
+      "orphan_fig_assets": 1,
+      "missing_referenced_assets": 0,
+      "top_orphans": [
+        "fig_141.png"
+      ]
+    }
+  ]
+}

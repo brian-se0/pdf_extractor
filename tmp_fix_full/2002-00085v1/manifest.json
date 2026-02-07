@@ -1,0 +1,121 @@
+{
+  "paper_id": "2002-00085v1",
+  "source_file": "2002.00085v1.pdf",
+  "source_path": "/Volumes/T9/lit_review/2002.00085v1.pdf",
+  "status": "success",
+  "page_count": 37,
+  "counts": {
+    "words": 13671,
+    "tables": 6,
+    "figures": 24,
+    "chars": 80688
+  },
+  "metadata": {
+    "title": "arXiv:2002.00085v1 [q-fin.ST] 31 Jan 2020",
+    "authors": [],
+    "year": 2020,
+    "doi": null,
+    "raw_pdf_metadata": {
+      "format": "PDF 1.5",
+      "title": null,
+      "author": null,
+      "subject": null,
+      "keywords": null,
+      "creator": "LaTeX with hyperref package",
+      "producer": "pdfTeX-1.40.17",
+      "creationDate": "D:20200204015934Z",
+      "modDate": "D:20200204015934Z",
+      "trapped": null,
+      "encryption": null
+    }
+  },
+  "warnings": [
+    "pdfplumber unusable table on page 29 index 1",
+    "pdfplumber unusable table on page 33 index 1",
+    "pdfplumber unusable table on page 33 index 2",
+    "pdfplumber unusable table on page 34 index 5",
+    "pdfplumber unusable table on page 35 index 1",
+    "pdfplumber unusable table on page 35 index 2",
+    "pdfplumber unusable table on page 37 index 1",
+    "discarded 18 low-quality embedded figure(s)"
+  ],
+  "errors": [],
+  "fallback": {
+    "used": false,
+    "primary_failed_stage": "none",
+    "fallback_used": "none",
+    "reasons": [],
+    "camelot_used": false,
+    "ocr_used": false,
+    "stdout_logged": false
+  },
+  "scan_like_page_ratio": 0.0,
+  "low_text_page_ratio": 0.0,
+  "runtime_seconds": 6.373,
+  "tool_versions": {
+    "pymupdf": "1.26.7",
+    "pdfplumber": "0.11.9",
+    "camelot-py": "1.0.9",
+    "pytesseract": "0.3.13"
+  },
+  "extraction_audit": {
+    "ok": true,
+    "issues": [],
+    "issue_details": {},
+    "metrics": {
+      "chars": 80688,
+      "pages": 37,
+      "table_reference_count": 16,
+      "figure_reference_count": 23,
+      "equation_reference_count": 0,
+      "equation_like_line_count": 180,
+      "garbled_math_token_count": 0,
+      "extracted_table_count": 6,
+      "extracted_figure_count": 24,
+      "low_text_page_ratio": 0.0,
+      "scan_like_page_ratio": 0.0
+    }
+  },
+  "quality_checks": [
+    {
+      "check": "output_folder_exists",
+      "status": "pass",
+      "detail": "/Volumes/T9/pdf_extractor/tmp_fix_full/2002-00085v1"
+    },
+    {
+      "check": "paper_md_exists",
+      "status": "pass",
+      "detail": "/Volumes/T9/pdf_extractor/tmp_fix_full/2002-00085v1/paper.md"
+    },
+    {
+      "check": "manifest_exists",
+      "status": "pass",
+      "detail": "/Volumes/T9/pdf_extractor/tmp_fix_full/2002-00085v1/manifest.json"
+    },
+    {
+      "check": "text_threshold",
+      "status": "pass",
+      "detail": "chars=80688, scan_like=False"
+    },
+    {
+      "check": "figure_count_match",
+      "status": "pass",
+      "detail": "markdown=24, manifest=24"
+    },
+    {
+      "check": "table_count_match",
+      "status": "pass",
+      "detail": "markdown=6, manifest=6"
+    },
+    {
+      "check": "figure_assets_exist",
+      "status": "pass",
+      "detail": "all figure assets exist"
+    },
+    {
+      "check": "fallback_stdout_manifest_alignment",
+      "status": "pass",
+      "detail": "fallback not used"
+    }
+  ]
+}

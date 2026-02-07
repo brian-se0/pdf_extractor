@@ -1,0 +1,28 @@
+,PC1,,PC2,PC3,PC4,PC5
+Variance explained,68.88%,,12.17%,5.67%,2.86%,1.41%
+(covariance),,,,,,
+Cumulative variance explained,68.88%,,82.05%,87.72%,90.59%,92.00%
+(covariance),,,,,,
+Cumulative variance explained,61.39%,,76.67%,81.88%,85.18%,86.96%
+(correlation),,,,,,
+•,,,,,,
+,The first principal component can be interpreted as the average level of implied volatil-,,,,,
+ities. A positive,shock along this mode would result,,,in a global,shift,in implied
+volatility.,,,,,,
+•,,,,,,
+,The second principal component corresponds to the skew. Shocks along this direction,,,,,
+,result in opposite movements in out-of-the-money call and put implied volatilities.,,,,,
+•,,,,,,
+,The third principal component reflects the term structure of implied volatilities.,,,,,
+•,,,,,,
+,The fourth principal component can be interpreted as curvature. A positive shock along,,,,,
+,this mode would have an opposite effect on the implied volatilities close to the money,,,,,
+,and on the far out-of-the-money and in-the-money implied vols.,,,,,
+,"Projections of Yt(m, τ ) − ˜Yt(m, τ ) onto the first",,,four principal,components Xi,(i =
+,,,,,,"t,"
+,"1, . . . , 4) (defined by Equation (7) ) are shown in Figure 5. All processes exhibit high pos-",,,,,
+,itive autocorrelation and mean-reverting behaviour with a period of mean reversion of,,,,,
+,several months. The ACF and PACF of X1,,,"are shown in Figure 6. As shown in Figure 6,",,
+,,t,,,,
+,"the autocorrelation functions decay exponentially, suggesting that they can be modeled as",,,,,
+,"Ornstein-Uhlenbeck/AR(1) processes, as already observed by Cont and da Fonseca (2002).",,,,,

@@ -1,0 +1,36 @@
+R Cont and J da Fonseca,,,,,Q U A N T I T A T I V E F I N A N C E
+,,,,,Arbitrage constraints for this type of model were ﬁrst
+,,,,,discussed in a risk-neutral framework by Sch¨onbucher [38]
+,,,,,"(see also [31]). However, in the case where the state variable"
+,,,,,is the whole volatility surface some care must be taken
+,,,,,to deﬁne properly the available instruments and strategies
+(cid:1)(cid:2)(cid:1)(cid:7),,,,,
+,,,,,in order to remain in the realm of applicability [12]. In
+(cid:1)(cid:2)(cid:1)(cid:5),,,,,
+,,,,,historical contrast here we have studied the dynamics of
+(cid:1)(cid:2)(cid:1)(cid:11),,,,,
+,,,,,"call or put options: of course, this is the relevant point of"
+(cid:1)(cid:2)(cid:1)(cid:9),,,,,
+,,,,,view from a risk management perspective. Our approach
+(cid:1),,,,,
+,,,,(cid:4)(cid:2)(cid:3),"bridges the gap between risk-neutral approaches [15, 31, 38]"
+((cid:1)(cid:2)(cid:1)(cid:9),,,,,
+,,,,,and the empirical work on historical dynamics of implied
+((cid:1)(cid:2)(cid:1)(cid:11),,,(cid:4)(cid:2)(cid:1),(cid:22),
+,,,,(cid:17),
+,,,,(cid:13) (cid:21),"volatility [1,20,24,29,39,41] and allows automatic adjustment"
+((cid:1)(cid:2)(cid:1)(cid:5),,,,(cid:20) (cid:17),
+,,,,(cid:19),
+,,,(cid:1)(cid:2)(cid:3) (cid:14),,to today’s option prices which are simply calibrated to the
+(cid:1)(cid:2)(cid:3),,,(cid:16),,
+,,,(cid:18) (cid:17),,
+,,,(cid:16),,
+,,,(cid:15),,
+(cid:4)(cid:2)(cid:1),,,(cid:14),,"initial condition I0(m, τ ): X0(m, τ ) = ln I0(m, τ ). The link"
+,,(cid:1),(cid:13),,
+,(cid:4)(cid:2)(cid:3),,(cid:12),,
+"!(cid:18)""(cid:15)(cid:22)""(cid:15)(cid:30)(cid:30)",,,,,between the historical and risk neutral approaches is discussed
+,,,,,in more detail in [12].
+Figure 24. Third eigenmode of daily implied volatility variations,,,,,
+for FTSE index options.,,,,,
+,,,,,7. Applications and extensions

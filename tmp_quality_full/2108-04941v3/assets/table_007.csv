@@ -1,0 +1,4 @@
+surfaces are arbitrage-free.,
+A short demo of,the CTMC model and VAE model ﬁtting procedure are available3 at:
+https://github.com/BrianNingUT/ArbFreeIV-VAE.,
+,3Please note that some notebooks require signiﬁcant run time due to the adaption of C++ to Python.

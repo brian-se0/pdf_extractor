@@ -1,0 +1,11 @@
+,,Total,,Calendar,,Call,,Butterfuly
+Paths,,62.761%,,21.245%,,36.548%,,36.548%
+Surfaces,,16.055%,,4.004%,,9.117%,,7.073%
+,Table 8. Quantiles of arbitrage penalty under PN,,,,β for SPX factor model (30)–(31).,,,
+β,0,,102,104,106,,1010,1015
+90th quantile,0.20,,5 · 10−5,5 · 10−10,2 · 10−13,,0,0
+95th quantile,0.77,,0.002,2 · 10−7,3 · 10−9,,4 · 10−15,0
+99th quantile,4.49,,0.01,3 · 10−7,2 · 10−9,,1 · 10−11,4 · 10−16
+,Figure 19. Simulation of,a,10-year,scenario for VIX (red),,and SPX (blue) using the,,SPX factor
+model (31)–(33).,,,,,,,,
+,Simulating the volatility index We simulate the VIX dynamics associated with the SPX,,,,,,,
