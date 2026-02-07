@@ -1,6 +1,0 @@
-Penalty,Median,90th quantile,95th quantile,99th quantile
-Total (cid:11),0,0.075,0.13,0.5
-Calendar spread p1,0,0,0.002,0.038
-Call spread p2,0,0,0,0.009
-Butterﬂy spread p3,0,0.01,0.06,0.458
-Figure 12. Calendar spread arbitrage (P1) for SPX options. (a) 29.09.2008 (b) 13.03.2020.,,,,

@@ -1,3 +1,0 @@
-Table 4,Tails of the cross-validation prediction error for single stock implied volatilities,
-Volume,Maturity Moneyness 95% Quantile of abs. error,Maximum absolute error
-,1d 3d Spline Spline* 1d 3d,Spline

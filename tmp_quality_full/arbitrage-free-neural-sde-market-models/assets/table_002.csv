@@ -1,7 +1,0 @@
-Factors,MAPE,PDA,PSAS
-Dynamic arb.,24.37%,3.51%,60.67%
-Dynamic arb. + Statistical acc.,5.11%,3.21%,28.11%
-Dynamic arb. + Static arb.,3.85%,3.04%,0.37%
-Figure 9. Price basis functions of the normalized call price surface.,,,
-Figure 10. Trajectory (black dots) of the R2 factors and the corresponding static arbitrage constraints,,,
-(red dashed lines) projected to the R2 factor space.,,,

@@ -1,8 +1,34 @@
-# Python caches
 __pycache__/
 *.py[cod]
-.pytest_cache/
+*$py.class
 
-# macOS sidecar files on external volumes
-._*
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+
+build/
+dist/
+.eggs/
+*.egg-info/
+pip-wheel-metadata/
+
+.venv/
+venv/
+env/
+
+.ipynb_checkpoints/
+
+.vscode/
+.idea/
+
 .DS_Store
+._*
+
+tmp*/
+*.tmp
+*.log

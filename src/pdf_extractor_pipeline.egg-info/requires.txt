@@ -1,6 +1,0 @@
-pymupdf>=1.24
-pdfplumber>=0.11
-camelot-py>=0.11
-
-[ocr]
-pytesseract>=0.3

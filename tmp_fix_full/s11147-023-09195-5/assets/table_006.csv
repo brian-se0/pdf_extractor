@@ -1,9 +1,0 @@
-,The Spline plot reports the results for spline with N𝜏 ≥ 4 data points per fitted line. The data covers the,,,
-period from Jan 2004 to Jul 2019,,,,
-,compared to 185.61 traded strikes and 19.53 maturities for a typical day in the index,,,
-option market.,,,,
-,The moneyness breakdown in Table 1 shows that the majority of the input data,,,
-concentrates,in,the,left,"tail, with approximately 58% (8,340,544 observations)"
-,"for index options and 46% (172,918,617 observations) for single firm options.",,,
-,The disparity in the relative proportion of call options between the index and sin-,,,
-,"gle firm option markets is significant, with right tail options representing only",,,
