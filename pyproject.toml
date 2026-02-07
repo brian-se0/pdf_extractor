@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pdf-extractor-pipeline"
+version = "0.1.0"
+description = "PDF to Markdown extraction pipeline with table and OCR fallbacks"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pymupdf>=1.24",
+  "pdfplumber>=0.11",
+  "camelot-py>=0.11",
+]
+
+[project.optional-dependencies]
+ocr = [
+  "pytesseract>=0.3",
+]
+
+[project.scripts]
+pdf-extract = "pdf_pipeline.run_pipeline:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
