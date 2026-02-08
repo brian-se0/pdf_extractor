@@ -7,8 +7,11 @@ from .types import FallbackState, TextExtraction
 ISSUE_WEIGHTS = {
     "missing_text": 0.55,
     "likely_missing_tables": 0.2,
+    "likely_incomplete_tables": 0.18,
     "unresolved_table_extraction": 0.15,
     "likely_missing_figures": 0.15,
+    "likely_incomplete_figures": 0.12,
+    "possible_figure_over_extraction": 0.1,
     "likely_missing_equations": 0.1,
     "possible_math_garbling": 0.1,
 }

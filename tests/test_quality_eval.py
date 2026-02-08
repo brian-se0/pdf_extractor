@@ -86,3 +86,38 @@ def test_evaluate_batch_report_with_gold() -> None:
     assert summary["gold_eval"]["total"] == 1
     assert summary["gold_eval"]["pass"] == 1
     assert summary["gold_eval"]["fail"] == 0
+
+
+def test_evaluate_batch_report_excludes_duplicates_by_default() -> None:
+    report = {
+        "results": [
+            {
+                "source_file": "canonical.pdf",
+                "status": "success",
+                "table_count": 1,
+                "figure_count": 1,
+                "word_count": 100,
+                "fallback": {"used": False},
+                "extraction_issues": [],
+                "warnings": [],
+                "extraction_audit": {"metrics": {}},
+                "is_duplicate": False,
+            },
+            {
+                "source_file": "duplicate.pdf",
+                "status": "success",
+                "table_count": 1,
+                "figure_count": 1,
+                "word_count": 100,
+                "fallback": {"used": False},
+                "extraction_issues": [],
+                "warnings": [],
+                "extraction_audit": {"metrics": {}},
+                "is_duplicate": True,
+            },
+        ]
+    }
+
+    summary = evaluate_batch_report(report)
+    assert summary["total"] == 1
+    assert summary["duplicates_excluded"] == 1

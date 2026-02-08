@@ -33,15 +33,15 @@ def run_extraction_pass(
         return result
 
     try:
-        result.metadata = extract_metadata(doc)
-    except Exception as exc:  # noqa: BLE001
-        result.stage_errors["metadata"] = str(exc)
-
-    try:
         result.text = extract_text(doc, config)
     except Exception as exc:  # noqa: BLE001
         result.stage_errors["text"] = str(exc)
         result.text = TextExtraction()
+
+    try:
+        result.metadata = extract_metadata(doc, text_hint=result.text.full_text)
+    except Exception as exc:  # noqa: BLE001
+        result.stage_errors["metadata"] = str(exc)
 
     page_lookup = page_text_lookup_from_pages(result.text.pages)
     result.table_marker_pages = detect_table_marker_pages(result.text.pages)

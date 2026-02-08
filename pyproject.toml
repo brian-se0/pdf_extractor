@@ -22,6 +22,7 @@ ocr = [
 [project.scripts]
 pdf-extract = "pdf_pipeline.run_pipeline:main"
 pdf-quality-eval = "pdf_pipeline.quality_eval:main"
+pdf-reindex = "pdf_pipeline.reindex:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

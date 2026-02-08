@@ -1,4 +1,5 @@
 from pathlib import Path
+import warnings
 
 import pdf_pipeline.tables as tables
 from pdf_pipeline.types import PageText, TableRecord
@@ -195,3 +196,47 @@ def test_detect_table_marker_pages_flags_caption_with_numeric_block() -> None:
 
     markers = tables.detect_table_marker_pages(pages)
     assert markers == {2}
+
+
+def test_count_table_references_uses_unique_ids() -> None:
+    pages = [
+        PageText(
+            page_number=1,
+            text="Table 1 reports values. Table 1 appears again. Table 2 is in appendix.",
+            char_count=80,
+            image_area_ratio=0.0,
+            scan_like=False,
+        ),
+        PageText(
+            page_number=2,
+            text="Further discussion of Table 2 and Table 1.",
+            char_count=45,
+            image_area_ratio=0.0,
+            scan_like=False,
+        ),
+    ]
+
+    assert tables.count_table_references(pages) == 2
+
+
+class _WarningCamelot:
+    def read_pdf(self, *_args, **_kwargs):  # noqa: ANN002
+        warnings.warn("No tables found in table area (0, 0, 10, 10)", UserWarning, stacklevel=1)
+        return []
+
+
+def test_extract_tables_camelot_suppresses_no_table_area_warning(monkeypatch) -> None:
+    monkeypatch.setattr(tables, "require_module", lambda *_args, **_kwargs: _WarningCamelot())
+
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        records, warnings_out = tables.extract_tables_camelot(
+            pdf_path=Path("/tmp/example.pdf"),
+            page_numbers={1},
+            page_text_lookup={1: "Table 1. Example"},
+            start_index=1,
+        )
+
+    assert records == []
+    assert any("camelot found no tables" in warning for warning in warnings_out)
+    assert not any("No tables found in table area" in str(item.message) for item in caught)

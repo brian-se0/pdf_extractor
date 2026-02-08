@@ -11,6 +11,17 @@ FIGURE_CAPTION_RE = re.compile(
     r"^\s*(?:figure|fig\.?)\s+\d+([:.\-]\s*|\s+).*$",
     re.IGNORECASE,
 )
+MIN_EMBEDDED_DISPLAY_RATIO_NO_CAPTION = 0.012
+MIN_DENSE_PAGE_DISPLAY_RATIO_NO_CAPTION = 0.05
+MIN_EMBEDDED_DISPLAY_RATIO_WITH_CAPTION = 0.01
+MIN_DENSE_PAGE_DISPLAY_RATIO_WITH_CAPTION = 0.03
+DENSE_PAGE_MAX_FIGURES_NO_CAPTION = 2
+DEFAULT_MAX_FIGURES_NO_CAPTION = 4
+MAX_CAPTIONED_PAGE_FIGURES = 2
+DENSE_PAGE_MAX_FIGURES_WITH_CAPTION = 1
+CAPTION_PROXIMITY_HORIZONTAL_OVERLAP_MIN = 0.2
+CAPTION_PROXIMITY_BELOW_RATIO = 0.14
+CAPTION_PROXIMITY_ABOVE_RATIO = 0.08
 
 
 def _embedded_figure_quality(
@@ -89,6 +100,86 @@ def _max_image_display_ratio(page: Any, xref: int) -> float:
     return max(areas) / page_area if areas else 0.0
 
 
+def _image_geometry(
+    page: Any,
+    xref: int,
+) -> tuple[float, tuple[float, float, float, float] | None]:
+    page_area = max(float(page.rect.width) * float(page.rect.height), 1.0)
+    try:
+        rects = page.get_image_rects(xref) or []
+    except Exception:
+        return 0.0, None
+    if not rects:
+        return 0.0, None
+
+    areas = [max(float(rect.width), 0.0) * max(float(rect.height), 0.0) for rect in rects]
+    max_idx = max(range(len(rects)), key=lambda idx: areas[idx])
+    max_rect = rects[max_idx]
+    ratio = max(areas) / page_area if areas else 0.0
+    return ratio, (float(max_rect.x0), float(max_rect.y0), float(max_rect.x1), float(max_rect.y1))
+
+
+def _horizontal_overlap_ratio(
+    lhs: tuple[float, float, float, float],
+    rhs: tuple[float, float, float, float],
+) -> float:
+    lhs_width = max(lhs[2] - lhs[0], 0.0)
+    rhs_width = max(rhs[2] - rhs[0], 0.0)
+    min_width = min(lhs_width, rhs_width)
+    if min_width <= 0.0:
+        return 0.0
+    overlap = max(0.0, min(lhs[2], rhs[2]) - max(lhs[0], rhs[0]))
+    return overlap / min_width
+
+
+def _is_near_caption_block(
+    image_bbox: tuple[float, float, float, float],
+    caption_bbox: tuple[float, float, float, float],
+    page_height: float,
+) -> bool:
+    overlap_ratio = _horizontal_overlap_ratio(image_bbox, caption_bbox)
+    if overlap_ratio < CAPTION_PROXIMITY_HORIZONTAL_OVERLAP_MIN:
+        return False
+
+    image_top = image_bbox[1]
+    image_bottom = image_bbox[3]
+    caption_top = caption_bbox[1]
+    caption_bottom = caption_bbox[3]
+
+    if image_bottom <= caption_top:
+        gap = caption_top - image_bottom
+        return gap <= page_height * CAPTION_PROXIMITY_BELOW_RATIO
+    if image_top >= caption_bottom:
+        gap = image_top - caption_bottom
+        return gap <= page_height * CAPTION_PROXIMITY_ABOVE_RATIO
+
+    # Intersecting vertical spans are considered near by definition.
+    return True
+
+
+def _image_matches_any_caption(
+    image_bbox: tuple[float, float, float, float] | None,
+    caption_blocks: list[tuple[str, tuple[float, float, float, float]]],
+    page_height: float,
+) -> bool:
+    if image_bbox is None or not caption_blocks:
+        return False
+    return any(
+        _is_near_caption_block(image_bbox, caption_bbox, page_height)
+        for _, caption_bbox in caption_blocks
+    )
+
+
+def _embedded_page_figure_limit(caption_count: int, dense_embedded_page: bool) -> int:
+    if caption_count <= 0:
+        return DENSE_PAGE_MAX_FIGURES_NO_CAPTION if dense_embedded_page else DEFAULT_MAX_FIGURES_NO_CAPTION
+
+    base_limit = min(MAX_CAPTIONED_PAGE_FIGURES, max(1, caption_count))
+    if dense_embedded_page:
+        return min(base_limit, DENSE_PAGE_MAX_FIGURES_WITH_CAPTION)
+    return base_limit
+
+
 def extract_figures(
     doc: Any,
     assets_dir: Path,
@@ -103,6 +194,7 @@ def extract_figures(
     discarded_duplicates = 0
     discarded_tiny_placement = 0
     discarded_dense_embedded = 0
+    discarded_caption_mismatch = 0
     discarded_page_cap = 0
 
     assets_dir.mkdir(parents=True, exist_ok=True)
@@ -110,11 +202,18 @@ def extract_figures(
     for page_index in range(doc.page_count):
         page = doc.load_page(page_index)
         page_number = page_index + 1
-        page_caption = _find_figure_caption(page_text_lookup.get(page_number, ""))
+        caption_blocks = _caption_blocks(page)
+        page_caption = caption_blocks[0][0] if caption_blocks else _find_figure_caption(
+            page_text_lookup.get(page_number, "")
+        )
+        page_has_caption = page_caption is not None
+        caption_count = len(caption_blocks)
         page_had_embedded = False
         accepted_on_page = 0
         page_images = page.get_images(full=True)
         dense_embedded_page = len(page_images) > 12
+        page_limit = _embedded_page_figure_limit(caption_count=caption_count, dense_embedded_page=dense_embedded_page)
+        page_height = float(page.rect.height)
 
         for image in page_images:
             if not image:
@@ -134,21 +233,42 @@ def extract_figures(
             height = int(image_dict.get("height", 0) or 0)
             image_payload = image_dict["image"]
             payload_size = len(image_payload)
-            display_area_ratio = _max_image_display_ratio(page, xref)
+            display_area_ratio, image_bbox = _image_geometry(page, xref)
 
-            if page_caption is None and display_area_ratio < 0.008:
+            min_display_ratio = (
+                MIN_EMBEDDED_DISPLAY_RATIO_WITH_CAPTION
+                if page_has_caption
+                else MIN_EMBEDDED_DISPLAY_RATIO_NO_CAPTION
+            )
+            if display_area_ratio < min_display_ratio:
                 discarded_tiny_placement += 1
                 continue
 
-            if page_caption is None and dense_embedded_page and display_area_ratio < 0.035:
+            min_dense_display_ratio = (
+                MIN_DENSE_PAGE_DISPLAY_RATIO_WITH_CAPTION
+                if page_has_caption
+                else MIN_DENSE_PAGE_DISPLAY_RATIO_NO_CAPTION
+            )
+            if dense_embedded_page and display_area_ratio < min_dense_display_ratio:
                 discarded_dense_embedded += 1
+                continue
+
+            require_caption_proximity = page_has_caption and (
+                dense_embedded_page or len(page_images) >= 8 or caption_count >= 2
+            )
+            if require_caption_proximity and not _image_matches_any_caption(
+                image_bbox=image_bbox,
+                caption_blocks=caption_blocks,
+                page_height=page_height,
+            ):
+                discarded_caption_mismatch += 1
                 continue
 
             score, flags = _embedded_figure_quality(
                 width=width,
                 height=height,
                 payload_size=payload_size,
-                has_caption=page_caption is not None,
+                has_caption=page_has_caption,
                 display_area_ratio=display_area_ratio,
             )
             if score < 0.35:
@@ -161,8 +281,7 @@ def extract_figures(
                 continue
             seen_hashes.add(image_hash)
 
-            page_limit = 3 if dense_embedded_page and page_caption is None else 5
-            if page_caption is None and accepted_on_page >= page_limit:
+            if accepted_on_page >= page_limit:
                 discarded_page_cap += 1
                 continue
 
@@ -192,7 +311,7 @@ def extract_figures(
             continue
 
         # Vector/chart fallback: if caption exists but no embedded image, crop region above caption.
-        for caption, (_, y0, _, _) in _caption_blocks(page):
+        for caption, (_, y0, _, _) in caption_blocks:
             clip_top = max(y0 - page.rect.height * 0.45, 0.0)
             clip_bottom = max(y0 - 4.0, clip_top)
             if clip_bottom - clip_top < page.rect.height * 0.08:
@@ -240,6 +359,10 @@ def extract_figures(
     if discarded_dense_embedded:
         warnings.append(
             f"discarded {discarded_dense_embedded} dense-page embedded figure candidate(s)"
+        )
+    if discarded_caption_mismatch:
+        warnings.append(
+            f"discarded {discarded_caption_mismatch} caption-mismatch embedded figure(s)"
         )
     if discarded_page_cap:
         warnings.append(f"discarded {discarded_page_cap} embedded figure(s) due to page cap")

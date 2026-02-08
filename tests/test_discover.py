@@ -18,7 +18,7 @@ def test_discover_skips_appledouble(tmp_path: Path) -> None:
 
 def test_build_jobs_handles_collisions(tmp_path: Path) -> None:
     first = tmp_path / "Test!.pdf"
-    second = tmp_path / "Test?.pdf"
+    second = tmp_path / "Test@.pdf"
     first.write_bytes(b"%PDF-1.4")
     second.write_bytes(b"%PDF-1.4")
 

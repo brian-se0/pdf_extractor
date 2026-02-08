@@ -8,11 +8,19 @@ PARSE_ERROR = "parse_error"
 LOW_TEXT_YIELD = "low_text_yield"
 SCAN_LIKE = "scan_like"
 TABLE_MISMATCH = "table_expectation_mismatch"
+LOW_TABLE_COVERAGE = "low_table_coverage"
+MALFORMED_TABLES = "malformed_tables_detected"
 FORCED_OCR = "forced_ocr"
 
 
 def _dedupe(values: list[str]) -> list[str]:
     return list(OrderedDict((value, None) for value in values))
+
+
+def _table_coverage_ratio(table_count: int, table_reference_count: int) -> float:
+    if table_reference_count <= 0:
+        return 1.0
+    return table_count / table_reference_count
 
 
 def decide_fallback(
@@ -22,6 +30,7 @@ def decide_fallback(
     table_marker_pages: set[int],
     table_reference_count: int,
     stage_errors: dict[str, str],
+    malformed_table_page_count: int = 0,
 ) -> FallbackState:
     state = FallbackState()
     reasons: list[str] = []
@@ -53,9 +62,22 @@ def decide_fallback(
     if table_marker_pages and table_count == 0:
         reasons.append(TABLE_MISMATCH)
         state.use_camelot = True
+    elif table_count == 0 and malformed_table_page_count > 0:
+        reasons.append(MALFORMED_TABLES)
+        state.use_camelot = True
     elif table_count == 0 and table_reference_count >= 4:
         reasons.append(TABLE_MISMATCH)
         state.use_camelot = True
+
+    table_coverage = _table_coverage_ratio(table_count, table_reference_count)
+    low_table_coverage = (
+        table_reference_count >= config.table_low_coverage_reference_min
+        and table_coverage < config.table_low_coverage_ratio_threshold
+    )
+    if low_table_coverage:
+        reasons.append(LOW_TABLE_COVERAGE)
+        state.use_camelot = True
+        state.use_ocr = config.ocr_mode != "never" or state.use_ocr
 
     if config.ocr_mode == "always":
         reasons.append(FORCED_OCR)

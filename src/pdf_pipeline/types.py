@@ -24,6 +24,8 @@ class PipelineConfig:
     scan_like_page_ratio: float = 0.5
     direct_ocr_scan_like_ratio_threshold: float = 0.85
     direct_ocr_low_text_ratio_threshold: float = 0.85
+    table_low_coverage_reference_min: int = 8
+    table_low_coverage_ratio_threshold: float = 0.25
 
 
 @dataclass
@@ -125,6 +127,9 @@ class PaperProcessingResult:
     confidence: dict[str, Any] = field(default_factory=dict)
     confidence_score: float = 0.0
     confidence_label: str = "low"
+    is_duplicate: bool = False
+    duplicate_of: str | None = None
+    duplicate_reason: str | None = None
 
     @property
     def ok(self) -> bool:

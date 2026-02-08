@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import re
+import warnings
 from pathlib import Path
 from typing import Iterable
 
@@ -9,6 +10,7 @@ from .deps import MissingDependencyError, require_module
 from .types import PageText, TableRecord
 
 TABLE_MARKER_RE = re.compile(r"\btable\s+\d+\b", re.IGNORECASE)
+TABLE_MARKER_ID_RE = re.compile(r"\btable\s+(\d+)\b", re.IGNORECASE)
 TABLE_CAPTION_LINE_RE = re.compile(r"^\s*table\s+\d+\b", re.IGNORECASE)
 TABLE_CAPTION_LINE_ALT_RE = re.compile(r"^\s*tab\.?\s+\d+\b", re.IGNORECASE)
 NUMERIC_TOKEN_RE = re.compile(r"^[()\[\]-]?\d[\d,]*(?:\.\d+)?%?$")
@@ -90,7 +92,21 @@ def detect_table_marker_pages(pages: Iterable[PageText]) -> set[int]:
 
 
 def count_table_references(pages: Iterable[PageText]) -> int:
-    return sum(len(TABLE_MARKER_RE.findall(page.text)) for page in pages)
+    reference_ids: set[int] = set()
+    for page in pages:
+        for match in TABLE_MARKER_ID_RE.finditer(page.text):
+            reference_ids.add(int(match.group(1)))
+    return len(reference_ids)
+
+
+def _read_pdf_camelot_safely(camelot_module: object, pdf_path: Path, **kwargs: object) -> object:
+    with warnings.catch_warnings():
+        warnings.filterwarnings(
+            "ignore",
+            message=r"No tables found in table area.*",
+            category=UserWarning,
+        )
+        return camelot_module.read_pdf(str(pdf_path), **kwargs)
 
 
 def _normalize_cell(value: object) -> str:
@@ -497,6 +513,7 @@ def extract_tables_camelot(
     page_numbers: set[int],
     page_text_lookup: dict[int, str],
     start_index: int,
+    quality_threshold: float = 0.35,
 ) -> tuple[list[TableRecord], list[str]]:
     warnings: list[str] = []
 
@@ -530,8 +547,9 @@ def extract_tables_camelot(
         for page_number in sorted(caption_pages_with_regions):
             for area in caption_regions[page_number]:
                 try:
-                    region_tables = camelot.read_pdf(
-                        str(pdf_path),
+                    region_tables = _read_pdf_camelot_safely(
+                        camelot,
+                        pdf_path,
                         pages=str(page_number),
                         flavor=flavor,
                         table_areas=[area],
@@ -545,8 +563,9 @@ def extract_tables_camelot(
         if non_caption_or_no_region_pages:
             try:
                 page_spec = ",".join(str(page) for page in non_caption_or_no_region_pages)
-                full_page_tables = camelot.read_pdf(
-                    str(pdf_path),
+                full_page_tables = _read_pdf_camelot_safely(
+                    camelot,
+                    pdf_path,
                     pages=page_spec,
                     flavor=flavor,
                 )
@@ -616,6 +635,7 @@ def extract_tables_camelot(
         page_text_lookup,
         table_id_start=start_index,
         source_name=f"camelot:{best_flavor}",
+        quality_threshold=quality_threshold,
     )
     warnings.extend(post_warnings)
     _assign_captions(records, page_text_lookup)

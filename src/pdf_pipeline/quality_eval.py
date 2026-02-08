@@ -16,8 +16,16 @@ def _safe_div(numerator: int | float, denominator: int | float) -> float:
 def evaluate_batch_report(
     batch_report: dict[str, Any],
     gold: dict[str, Any] | None = None,
+    *,
+    include_duplicates: bool = False,
 ) -> dict[str, Any]:
-    results = list(batch_report.get("results", []))
+    all_results = list(batch_report.get("results", []))
+    results = (
+        list(all_results)
+        if include_duplicates
+        else [result for result in all_results if not bool(result.get("is_duplicate", False))]
+    )
+    duplicates_excluded = len(all_results) - len(results)
     total = len(results)
 
     success = sum(1 for result in results if result.get("status") == "success")
@@ -70,6 +78,7 @@ def evaluate_batch_report(
 
     summary: dict[str, Any] = {
         "total": total,
+        "duplicates_excluded": duplicates_excluded,
         "success": success,
         "partial": partial,
         "failed": failed,
@@ -155,6 +164,7 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--batch-report", type=Path, required=True)
     parser.add_argument("--gold", type=Path, default=None)
     parser.add_argument("--output", type=Path, default=None)
+    parser.add_argument("--include-duplicates", action="store_true")
     return parser.parse_args(argv)
 
 
@@ -166,7 +176,11 @@ def main(argv: list[str] | None = None) -> int:
     if args.gold is not None:
         gold = json.loads(args.gold.read_text(encoding="utf-8"))
 
-    summary = evaluate_batch_report(batch_report, gold)
+    summary = evaluate_batch_report(
+        batch_report,
+        gold,
+        include_duplicates=args.include_duplicates,
+    )
 
     if args.output is not None:
         args.output.parent.mkdir(parents=True, exist_ok=True)

@@ -42,8 +42,22 @@ Extraction audit lines are also printed to flag likely missing content:
 - `<output>/<paper_id>/assets/*`
 - `<output>/<paper_id>/manifest.json`
 - `<output>/batch_report.json`
+- `<output>/canonical_inventory.json`
 
 `manifest.json` and `batch_report.json` include an `extraction_audit` section with per-file and batch-level issue summaries.
+Each `manifest.json` now records publication-year resolution metadata:
+- `metadata.publication_year`
+- `metadata.raw_year_candidates`
+- `metadata.year_resolution_reason`
+- `metadata.raw_pdf_year`
+- `metadata.year` (canonical publication year)
+
+Duplicate detection metadata is also included:
+- `is_duplicate`
+- `duplicate_of`
+- `duplicate_reason`
+
+`canonical_inventory.json` excludes duplicates by default.
 
 Each `manifest.json` and batch `results[]` entry also includes a `confidence` object with:
 - `score` (0-1)
@@ -66,4 +80,22 @@ python -m pdf_pipeline.quality_eval \
   --batch-report /Volumes/T9/lit_review/extracted/batch_report.json \
   --gold /path/to/gold_expectations.json \
   --output /Volumes/T9/lit_review/extracted/quality_eval.json
+```
+
+To include duplicates in quality evaluation:
+
+```bash
+python -m pdf_pipeline.quality_eval \
+  --batch-report /Volumes/T9/lit_review/extracted/batch_report.json \
+  --include-duplicates
+```
+
+## Reindex / Backfill
+
+Repair year metadata and duplicate flags for existing extracted folders without rerunning OCR:
+
+```bash
+python -m pdf_pipeline.reindex \
+  --extracted-dir /Volumes/T9/lit_review/extracted \
+  --batch-report /Volumes/T9/lit_review/extracted/batch_report.json
 ```

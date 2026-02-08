@@ -1,6 +1,13 @@
 from pathlib import Path
 
-from pdf_pipeline.fallback import LOW_TEXT_YIELD, TABLE_MISMATCH, decide_fallback, fallback_log_line
+from pdf_pipeline.fallback import (
+    LOW_TABLE_COVERAGE,
+    LOW_TEXT_YIELD,
+    MALFORMED_TABLES,
+    TABLE_MISMATCH,
+    decide_fallback,
+    fallback_log_line,
+)
 from pdf_pipeline.types import PipelineConfig, TextExtraction
 
 
@@ -71,3 +78,39 @@ def test_table_reference_count_backstop_triggers_camelot() -> None:
 
     assert state.use_camelot is True
     assert TABLE_MISMATCH in state.reasons
+
+
+def test_low_table_coverage_triggers_camelot_and_ocr() -> None:
+    config = PipelineConfig(input_dir=Path("/in"), output_dir=Path("/out"), ocr_mode="auto")
+    text = TextExtraction(total_chars=7000, low_text_page_ratio=0.0, scan_like_page_ratio=0.0)
+
+    state = decide_fallback(
+        config=config,
+        text_result=text,
+        table_count=2,
+        table_marker_pages=set(),
+        table_reference_count=20,
+        stage_errors={},
+    )
+
+    assert state.use_camelot is True
+    assert state.use_ocr is True
+    assert LOW_TABLE_COVERAGE in state.reasons
+
+
+def test_malformed_table_pages_trigger_camelot_when_zero_tables() -> None:
+    config = PipelineConfig(input_dir=Path("/in"), output_dir=Path("/out"), ocr_mode="never")
+    text = TextExtraction(total_chars=8000, low_text_page_ratio=0.0, scan_like_page_ratio=0.0)
+
+    state = decide_fallback(
+        config=config,
+        text_result=text,
+        table_count=0,
+        table_marker_pages=set(),
+        table_reference_count=0,
+        stage_errors={},
+        malformed_table_page_count=5,
+    )
+
+    assert state.use_camelot is True
+    assert MALFORMED_TABLES in state.reasons

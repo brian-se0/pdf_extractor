@@ -9,7 +9,10 @@ __all__ = [
     "figures",
     "fallback",
     "confidence",
+    "dedup",
     "quality_eval",
+    "inventory",
+    "reindex",
     "render_markdown",
     "run_pipeline",
 ]

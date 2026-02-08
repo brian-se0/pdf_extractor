@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 from collections import Counter, defaultdict
 import hashlib
+import json
 import os
 import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
@@ -11,9 +12,12 @@ from typing import Any
 
 from .audit import build_extraction_audit, format_audit_log_line
 from .confidence import compute_confidence
+from .dedup import build_duplicate_flags
 from .discover import build_jobs, discover_pdfs
 from .extract import run_extraction_pass
 from .fallback import fallback_log_line, decide_fallback
+from .inventory import build_canonical_inventory
+from .metadata import normalize_metadata
 from .ocr import run_ocrmypdf, run_tesseract_page_ocr
 from .quality import run_quality_checks
 from .render_markdown import render_markdown
@@ -27,9 +31,28 @@ from .types import (
 )
 from .utils import tool_versions, write_json, write_table_csv_assets
 
+RELAXED_CAMELOT_QUALITY_THRESHOLD = 0.25
+
 
 def _word_count(text: str) -> int:
     return len(text.split())
+
+
+def _sync_manifest_duplicate_flags(result: PaperProcessingResult) -> None:
+    if not result.manifest_path:
+        return
+    manifest_path = Path(result.manifest_path)
+    if not manifest_path.exists():
+        return
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return
+
+    manifest["is_duplicate"] = result.is_duplicate
+    manifest["duplicate_of"] = result.duplicate_of
+    manifest["duplicate_reason"] = result.duplicate_reason
+    write_json(manifest_path, manifest)
 
 
 def _merge_metadata(primary: dict[str, Any], fallback: dict[str, Any]) -> dict[str, Any]:
@@ -92,13 +115,50 @@ def _select_camelot_pages(
     marker_pages: set[int],
     malformed_pages: set[int],
     table_count: int,
+    low_table_coverage: bool,
 ) -> set[int]:
     pages = set(malformed_pages)
-    if marker_pages and table_count == 0:
+    if marker_pages and (table_count == 0 or low_table_coverage):
         pages |= marker_pages
-    if not pages and table_count == 0:
+    if not pages and (table_count == 0 or low_table_coverage):
         pages = set(range(1, page_count + 1))
     return pages
+
+
+def _table_coverage_ratio(table_count: int, table_reference_count: int) -> float:
+    if table_reference_count <= 0:
+        return 1.0
+    return table_count / table_reference_count
+
+
+def _table_coverage_is_low(
+    *,
+    table_count: int,
+    table_reference_count: int,
+    config: PipelineConfig,
+) -> bool:
+    coverage = _table_coverage_ratio(table_count, table_reference_count)
+    return (
+        table_reference_count >= config.table_low_coverage_reference_min
+        and coverage < config.table_low_coverage_ratio_threshold
+    )
+
+
+def _should_run_relaxed_camelot_retry(
+    *,
+    table_count: int,
+    table_reference_count: int,
+    config: PipelineConfig,
+) -> bool:
+    if table_reference_count <= 0:
+        return False
+    if table_count == 0:
+        return True
+    return _table_coverage_is_low(
+        table_count=table_count,
+        table_reference_count=table_reference_count,
+        config=config,
+    )
 
 
 def _should_replace_text(primary: TextExtraction, candidate: TextExtraction) -> bool:
@@ -153,15 +213,22 @@ def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult
         table_marker_pages=primary.table_marker_pages,
         table_reference_count=primary.table_reference_count,
         stage_errors=primary.stage_errors,
+        malformed_table_page_count=len(primary.malformed_table_pages),
     )
 
     if fallback.use_camelot:
         table_count_before_camelot = len(tables)
+        low_table_coverage_before_camelot = _table_coverage_is_low(
+            table_count=table_count_before_camelot,
+            table_reference_count=primary.table_reference_count,
+            config=config,
+        )
         pages = _select_camelot_pages(
             page_count=page_count,
             marker_pages=primary.table_marker_pages,
             malformed_pages=primary.malformed_table_pages,
             table_count=len(tables),
+            low_table_coverage=low_table_coverage_before_camelot,
         )
 
         camelot_tables, camelot_warnings = extract_tables_camelot(
@@ -183,6 +250,29 @@ def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult
             )
             print(message, flush=True)
             warnings.append(message)
+
+        if _should_run_relaxed_camelot_retry(
+            table_count=len(tables),
+            table_reference_count=primary.table_reference_count,
+            config=config,
+        ):
+            relaxed_pages = set(range(1, page_count + 1))
+            relaxed_tables, relaxed_warnings = extract_tables_camelot(
+                pdf_path=job.source_path,
+                page_numbers=relaxed_pages,
+                page_text_lookup={page.page_number: page.text for page in text_result.pages},
+                start_index=len(tables) + 1,
+                quality_threshold=RELAXED_CAMELOT_QUALITY_THRESHOLD,
+            )
+            warnings.extend(
+                [f"relaxed camelot: {warning}" for warning in relaxed_warnings]
+            )
+            if relaxed_tables:
+                before_relaxed = len(tables)
+                tables = _merge_tables(tables, relaxed_tables)
+                recovered = len(tables) - before_relaxed
+                if recovered > 0:
+                    warnings.append(f"relaxed camelot recovered {recovered} table(s)")
 
     ocr_pdf_path = output_dir / "_ocr.pdf"
     if fallback.use_ocr:
@@ -222,22 +312,46 @@ def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult
                     text_result = direct_ocr_text
                     warnings.append("OCR image fallback replaced text extraction output")
 
-            if not tables:
+            table_reference_count_for_recovery = max(
+                primary.table_reference_count,
+                ocr_pass.table_reference_count,
+            )
+            should_try_ocr_table_fallback = (not tables) or _table_coverage_is_low(
+                table_count=len(tables),
+                table_reference_count=table_reference_count_for_recovery,
+                config=config,
+            )
+            if should_try_ocr_table_fallback:
                 ocr_table_records, ocr_table_warnings = extract_tables_from_ocr_text(
                     pages=text_result.pages,
-                    start_index=1,
+                    start_index=len(tables) + 1,
                 )
                 warnings.extend(ocr_table_warnings)
                 if ocr_table_records:
-                    tables = ocr_table_records
-                    warnings.append(
-                        f"OCR text table fallback recovered {len(ocr_table_records)} table(s)"
-                    )
+                    table_count_before_ocr_text_tables = len(tables)
+                    tables = _merge_tables(tables, ocr_table_records)
+                    recovered_tables = len(tables) - table_count_before_ocr_text_tables
+                    if recovered_tables > 0:
+                        warnings.append(
+                            f"OCR text table fallback recovered {recovered_tables} table(s)"
+                        )
+                    else:
+                        warnings.append(
+                            "OCR text table fallback found candidate tables but none passed merge"
+                        )
 
             if ocr_pass.tables:
                 tables = _merge_tables(tables, ocr_pass.tables)
 
             page_count = max(page_count, ocr_pass.page_count)
+
+    first_page_text = text_result.pages[0].text if text_result.pages else None
+    metadata = normalize_metadata(
+        metadata,
+        text_hint=text_result.full_text,
+        first_page_text=first_page_text,
+        source_file=job.source_path.name,
+    )
 
     if fallback.used:
         print(fallback_log_line(job.source_path.name, fallback), flush=True)
@@ -259,7 +373,10 @@ def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult
     critical_audit_issues = {
         "missing_text",
         "likely_missing_tables",
+        "likely_incomplete_tables",
         "likely_missing_figures",
+        "likely_incomplete_figures",
+        "possible_figure_over_extraction",
         "likely_missing_equations",
         "unresolved_table_extraction",
     }
@@ -308,6 +425,9 @@ def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult
         "low_text_page_ratio": text_result.low_text_page_ratio,
         "runtime_seconds": round(time.time() - started, 3),
         "tool_versions": tool_versions(),
+        "is_duplicate": False,
+        "duplicate_of": None,
+        "duplicate_reason": None,
     }
 
     manifest["extraction_audit"] = extraction_audit
@@ -381,6 +501,9 @@ def _process_one(job: PaperJob, config: PipelineConfig) -> PaperProcessingResult
         confidence=confidence,
         confidence_score=float(confidence.get("score", 0.0)),
         confidence_label=str(confidence.get("label", "low")),
+        is_duplicate=False,
+        duplicate_of=None,
+        duplicate_reason=None,
     )
 
 
@@ -470,6 +593,53 @@ def main(argv: list[str] | None = None) -> int:
 
     results.sort(key=lambda item: item.source_file.lower())
 
+    dedup_flags = build_duplicate_flags(
+        [
+            {
+                "paper_id": item.paper_id,
+                "source_file": item.source_file,
+                "status": item.status,
+                "word_count": item.word_count,
+                "table_count": item.table_count,
+                "figure_count": item.figure_count,
+                "metadata": item.metadata,
+            }
+            for item in results
+        ]
+    )
+    for item in results:
+        flags = dedup_flags.get(
+            item.paper_id,
+            {
+                "is_duplicate": False,
+                "duplicate_of": None,
+                "duplicate_reason": None,
+            },
+        )
+        item.is_duplicate = bool(flags["is_duplicate"])
+        item.duplicate_of = flags["duplicate_of"]
+        item.duplicate_reason = flags["duplicate_reason"]
+        _sync_manifest_duplicate_flags(item)
+
+    canonical_inventory = build_canonical_inventory(
+        [
+            {
+                "paper_id": item.paper_id,
+                "source_file": item.source_file,
+                "status": item.status,
+                "metadata": item.metadata,
+                "manifest": item.manifest_path,
+                "is_duplicate": item.is_duplicate,
+                "duplicate_of": item.duplicate_of,
+                "duplicate_reason": item.duplicate_reason,
+            }
+            for item in results
+        ],
+        exclude_duplicates=True,
+    )
+    canonical_inventory_path = config.output_dir / "canonical_inventory.json"
+    write_json(canonical_inventory_path, canonical_inventory)
+
     fallback_results = [item for item in results if item.fallback.used]
     confidence_buckets: Counter[str] = Counter(item.confidence_label for item in results)
     avg_confidence = round(
@@ -509,6 +679,15 @@ def main(argv: list[str] | None = None) -> int:
             "average_score": avg_confidence,
             "counts": dict(confidence_buckets),
         },
+        "canonical_summary": {
+            "exclude_duplicates": True,
+            "total": canonical_inventory["total"],
+            "success": canonical_inventory["success"],
+            "partial": canonical_inventory["partial"],
+            "failed": canonical_inventory["failed"],
+            "duplicates_excluded": canonical_inventory["duplicates_excluded"],
+            "inventory_path": str(canonical_inventory_path),
+        },
         "extraction_audit": {
             "papers_with_issues": papers_with_issues,
             "issue_counts": dict(issue_counter),
@@ -525,6 +704,12 @@ def main(argv: list[str] | None = None) -> int:
                 "table_count": item.table_count,
                 "figure_count": item.figure_count,
                 "word_count": item.word_count,
+                "publication_year": item.metadata.get("publication_year"),
+                "year": item.metadata.get("year"),
+                "doi": item.metadata.get("doi"),
+                "is_duplicate": item.is_duplicate,
+                "duplicate_of": item.duplicate_of,
+                "duplicate_reason": item.duplicate_reason,
                 "fallback": {
                     "used": item.fallback.used,
                     "fallback_used": item.fallback.fallback_used_label,
@@ -549,6 +734,7 @@ def main(argv: list[str] | None = None) -> int:
     write_json(batch_report_path, batch_report)
 
     print(f"Batch report written to: {batch_report_path}", flush=True)
+    print(f"Canonical inventory written to: {canonical_inventory_path}", flush=True)
 
     return 0 if batch_report["failed"] == 0 else 1
 
