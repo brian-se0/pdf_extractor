@@ -8,6 +8,7 @@ from typing import Any
 
 TITLE_SIMILARITY_THRESHOLD = 0.98
 MAX_FIRST_PAGE_HASH_DISTANCE = 20
+MIN_DOI_SUFFIX_LENGTH = 4
 
 ARTIFACT_PATTERNS = (
     "ebsco-fulltext",
@@ -36,7 +37,21 @@ def normalize_doi(value: str | None) -> str | None:
             text = text[len(prefix):]
             break
     text = text.strip().rstrip(".,;")
+    if not _is_plausible_doi(text):
+        return None
     return text or None
+
+
+def _is_plausible_doi(value: str) -> bool:
+    match = re.match(r"^10\.\d{4,9}/(.+)$", value)
+    if not match:
+        return False
+
+    suffix = match.group(1).strip()
+    if len(suffix) < MIN_DOI_SUFFIX_LENGTH:
+        return False
+
+    return bool(re.search(r"[a-z0-9]", suffix))
 
 
 def normalize_title(value: str | None) -> str:
@@ -300,4 +315,3 @@ def apply_duplicate_flags(records: list[dict[str, Any]]) -> list[dict[str, Any]]
         merged.update(flags.get(paper_id, {}))
         enriched.append(merged)
     return enriched
-
